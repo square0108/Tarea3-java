@@ -1,25 +1,34 @@
 package frontend;
+import backend.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
-public class PanelBotones extends JPanel {
-    private JPanel PanelRetiro;
-    private JPanel PanelCompra;
+public class PanelBotones extends JPanel implements ActionListener {
+    JButton[] botones;
     public PanelBotones(){
-        this.PanelRetiro = new JPanel();
-        this.PanelCompra = new JPanel();
-        this.setLayout(new GridLayout(1,2));
-        PanelRetiro.setLayout(new GridLayout(2,1));
-        PanelCompra.setLayout(new GridLayout(5,1));
+        this.setLayout(new GridLayout(5,1));
+        this.botones = new JButton[5];
+        botones[0] = new JButton("Coca Cola");
+        botones[1] = new JButton("Sprite");
+        botones[2] = new JButton("Fanta");
+        botones[3] = new JButton("Snickers");
+        botones[4] = new JButton("Super 8");
 
-        this.add(PanelRetiro);
-        this.add(PanelCompra);
+        for (int i = 0; i < botones.length; i++) {
+            botones[i].addActionListener(this);
+            this.add(botones[i]);
+        }
 
-        PanelRetiro.add(new Button("Retirar producto"));
-        PanelRetiro.add(new Button("Retirar vuelto"));
-        PanelCompra.add(new Button("Coca Cola"));
-        PanelCompra.add(new Button("Sprite"));
-        PanelCompra.add(new Button("Fanta"));
-        PanelCompra.add(new Button("Snickers"));
-        PanelCompra.add(new Button("Super 8"));
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for (int i = 0; i < botones.length; i++) {
+            if (e.getSource() == botones[i]) {
+
+            }
+        }
     }
 }

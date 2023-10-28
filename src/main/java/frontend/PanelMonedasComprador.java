@@ -2,5 +2,7 @@ package frontend;
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelCrearMonedas extends JPanel {
+public class PanelMonedasComprador extends JPanel {
+    public PanelMonedasComprador() {
+    }
 }
