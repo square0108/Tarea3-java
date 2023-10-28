@@ -12,7 +12,7 @@ public class PanelPrincipal extends JPanel {
         this.setBackground(Color.white);
         this.setLayout(new GridLayout(1,2));
 
+        this.add(com); // primero comprador dsp expendedor (izquierda:derecha)
         this.add(exp);
-        this.add(com);
     }
 }
