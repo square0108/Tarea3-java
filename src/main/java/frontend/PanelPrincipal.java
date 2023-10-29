@@ -1,5 +1,7 @@
 package frontend;
 
+import backend.Expendedor;
+
 import javax.swing.*;
 import java.awt.*;
 

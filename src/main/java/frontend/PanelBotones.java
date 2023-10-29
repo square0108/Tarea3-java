@@ -30,7 +30,6 @@ public class PanelBotones extends JPanel implements ActionListener {
         for (int i = 0; i < botones.length; i++) {
             if (e.getSource() == botones[i] && panelComprador.getValorSelect() >= Catalogo.values()[i].precio) {
                 System.out.println("yay");
-
             }
         }
     }

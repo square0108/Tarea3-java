@@ -1,5 +1,6 @@
 package frontend;
 
+import backend.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,9 +10,11 @@ public class PanelComprador extends JPanel {
     private PanelCrearMonedas CreadorMonedas;
     private JPanel Upper;
     private JPanel Lower;
+    private Expendedor TestExpendedorPlsDelete;
     private int valorSelect;
 
     public PanelComprador() {
+        TestExpendedorPlsDelete = new Expendedor(3);
         Upper = new JPanel();
         Lower = new JPanel();
         Upper.setLayout(new GridLayout(1,2));

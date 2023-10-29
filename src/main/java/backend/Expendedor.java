@@ -2,7 +2,6 @@ package backend;
 
 /**
  * Una clase que Simula el comportamiento de un Expendedor. <code>Comprador</code> Interactua con esta.
- * @see Comprador
  */
 public class Expendedor {
     private Deposito<Producto> coca;
@@ -49,69 +48,10 @@ public class Expendedor {
      * @throws PagoIncorrectoException Ocurre en caso de que se intente realizar un pago con moneda de referencia null.
      * @throws PagoInsuficienteException Ocurre en caso de que el valor de la moneda ingresada sea menor al precio del producto.
      */
-    public Producto comprarProducto(int ID, Moneda moneda) throws NoHayProductoException, PagoIncorrectoException, PagoInsuficienteException {
+
+    public void comprarProducto(int ID, Moneda moneda) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         /* Antes de ejecutar cualquier paso, se revisa que la moneda sea valida (no null). */
-        if (moneda == null) throw new PagoIncorrectoException();
-
-        /* Se crea la siguiente variable para verificar dos cosas: Que el ID ingresado sea valido, y que el pago ingresado sea suficiente. */
-        Catalogo Compra = null;
-
-        /* Se recorre el array Main.Catalogo.values(), que contiene todas las constantes de Catalogo, las cuales almacenan los IDs y los precios. */
-        for (int i = 0; i < Catalogo.values().length; i++) {
-            if (Catalogo.values()[i].id == ID) { /* Chequea: ID es valido? */
-                Compra = Catalogo.values()[i];
-                if (moneda.getValor() >= Catalogo.values()[i].precio) { /* Chequea: El pago es suficiente? */
-                    Compra = Catalogo.values()[i];
-            }
-                else {
-                    throw new PagoInsuficienteException(this, moneda);
-                }
-            }
-        }
-        /* Si Compra permanece inicializada como NULL, entonces el ID ingresado no es valido. */
-        if (Compra == null) throw new NoHayProductoException(this, moneda);
-
-        /* Primero se crea ProductoComprado.
-        * Si al hacer get() desde un deposito se le asigna null a ProductoComprado, es porque este deposito ha quedado vacio. */
-        Producto ProductoComprado;
-        switch (Compra) {
-            case COCA:
-                ProductoComprado = coca.get();
-                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
-                break;
-            case SPRITE:
-                ProductoComprado = sprite.get();
-                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
-                break;
-            case FANTA:
-                ProductoComprado = fanta.get();
-                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
-                break;
-            case SNICKERS:
-                ProductoComprado = snickers.get();
-                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
-                break;
-            case SUPER8:
-                ProductoComprado = super8.get();
-                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
-                break;
-            default:
-                return null;
-        }
-
-        // GLLRM: Generar monedas segun monto de vuelto y añadirlas al deposito de vuelto
-        int montovuelto = moneda.getValor() - Compra.precio;
-        while( montovuelto > 0 ){
-            montovuelto -= 100;
-            Moneda100 moneda100 = new Moneda100();
-            monVu.add(moneda100);
-        }
-
-        return ProductoComprado;
-    }
-
-    public void comprarProductoUPDATE(int ID, Moneda moneda) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
-        /* Antes de ejecutar cualquier paso, se revisa que la moneda sea valida (no null). */
+        /* todo: arreglar esta excepcion*/
         if (monUsadas.isEmpty()) throw new PagoIncorrectoException();
 
         /* Se crea la siguiente variable para verificar dos cosas: Que el ID ingresado sea valido, y que el pago ingresado sea suficiente. */

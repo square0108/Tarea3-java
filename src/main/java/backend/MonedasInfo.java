@@ -6,4 +6,5 @@ public enum MonedasInfo {
     MonedasInfo(int valor) {
         this.valor = valor;
     }
+
 }
