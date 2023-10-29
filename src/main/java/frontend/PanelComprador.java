@@ -7,18 +7,26 @@ public class PanelComprador extends JPanel {
     private PanelRetiros retiros;
     private PanelBotones panelBotones;
     private PanelCrearMonedas CreadorMonedas;
-    private PanelMonedasComprador MonedasComprador;
+    private JPanel Upper;
+    private JPanel Lower;
 
     public PanelComprador() {
-        this.setLayout(new GridLayout(2,2));
+        Upper = new JPanel();
+        Lower = new JPanel();
+        Upper.setLayout(new GridLayout(1,2));
+        Lower.setLayout(new BorderLayout());
+        GridLayout grid = new GridLayout(2,1);
+        this.setLayout(grid);
+        this.add(Upper);
+        this.add(Lower);
+
         this.retiros = new PanelRetiros();
         this.panelBotones = new PanelBotones();
         this.CreadorMonedas = new PanelCrearMonedas();
-        this.MonedasComprador = new PanelMonedasComprador();
-        this.add(retiros);
-        this.add(panelBotones);
-        this.add(CreadorMonedas);
-        this.add(MonedasComprador);
+
+        Upper.add(retiros);
+        Upper.add(panelBotones);
+        Lower.add(CreadorMonedas, BorderLayout.NORTH);
 
         this.setBackground(Color.LIGHT_GRAY);
 

@@ -31,4 +31,7 @@ public class Deposito<T> {
             return null;
         }
     }
+    public boolean isEmpty() {
+        return this.array.isEmpty();
+    }
 }

@@ -11,6 +11,8 @@ public class Expendedor {
     private Deposito<Producto> snickers;
     private Deposito<Producto> super8;
     private Deposito<Moneda> monVu;
+    private Deposito<Moneda> monUsadas;
+    private Producto ProductoAlmacenado;
 
     /**
      * Metodo constructor de Expendedor. Genera un stock dentro de los depositos de Productos de Expendedor.
@@ -23,11 +25,10 @@ public class Expendedor {
         this.snickers = new Deposito<>();
         this.super8 = new Deposito<>();
         this.monVu = new Deposito<>();
+        this.monUsadas = new Deposito<>();
+        this.ProductoAlmacenado = null;
 
         /* Se rellenan todos los depositos con la misma cantidad de stock. */
-        /*GLLRM: En caso de que el stock sea menor o igual a cero, simplemente no se añade nada a los
-        * depositos ¿verdad?*/
-        /* SQUARE: Si, en realidad el if (stock>0) no seria necesario porque en caso contrario aunque no estuviese el If, no se ejecutaria el for. */
         if (stock>0){
             for (int i = 1; i <= stock; i++) {
                 coca.add(new CocaCola(1000 + i));
@@ -107,6 +108,65 @@ public class Expendedor {
         }
 
         return ProductoComprado;
+    }
+
+    public void comprarProductoUPDATE(int ID, Moneda moneda) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
+        /* Antes de ejecutar cualquier paso, se revisa que la moneda sea valida (no null). */
+        if (monUsadas.isEmpty()) throw new PagoIncorrectoException();
+
+        /* Se crea la siguiente variable para verificar dos cosas: Que el ID ingresado sea valido, y que el pago ingresado sea suficiente. */
+        Catalogo Compra = null;
+
+        /* Se recorre el array Main.Catalogo.values(), que contiene todas las constantes de Catalogo, las cuales almacenan los IDs y los precios. */
+        for (int i = 0; i < Catalogo.values().length; i++) {
+            if (Catalogo.values()[i].id == ID) { /* Chequea: ID es valido? */
+                Compra = Catalogo.values()[i];
+                if (moneda.getValor() >= Catalogo.values()[i].precio) { /* Chequea: El pago es suficiente? */
+                    Compra = Catalogo.values()[i];
+                }
+                else {
+                    throw new PagoInsuficienteException(this, moneda);
+                }
+            }
+        }
+        /* Si Compra permanece inicializada como NULL, entonces el ID ingresado no es valido. */
+        if (Compra == null) throw new NoHayProductoException(this, moneda);
+
+        /* Primero se crea ProductoComprado.
+         * Si al hacer get() desde un deposito se le asigna null a ProductoComprado, es porque este deposito ha quedado vacio. */
+        Producto ProductoComprado;
+        switch (Compra) {
+            case COCA:
+                ProductoComprado = coca.get();
+                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
+                break;
+            case SPRITE:
+                ProductoComprado = sprite.get();
+                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
+                break;
+            case FANTA:
+                ProductoComprado = fanta.get();
+                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
+                break;
+            case SNICKERS:
+                ProductoComprado = snickers.get();
+                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
+                break;
+            case SUPER8:
+                ProductoComprado = super8.get();
+                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
+                break;
+            default:
+                break;
+        }
+
+        // GLLRM: Generar monedas segun monto de vuelto y añadirlas al deposito de vuelto
+        int montovuelto = moneda.getValor() - Compra.precio;
+        while( montovuelto > 0 ){
+            montovuelto -= 100;
+            Moneda100 moneda100 = new Moneda100();
+            monVu.add(moneda100);
+        }
     }
 
     /**
