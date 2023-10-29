@@ -9,20 +9,22 @@ public class PanelComprador extends JPanel {
     private PanelCrearMonedas CreadorMonedas;
     private JPanel Upper;
     private JPanel Lower;
+    private int valorSelect;
 
     public PanelComprador() {
         Upper = new JPanel();
         Lower = new JPanel();
         Upper.setLayout(new GridLayout(1,2));
         Lower.setLayout(new BorderLayout());
+        this.valorSelect = 0;
         GridLayout grid = new GridLayout(2,1);
         this.setLayout(grid);
         this.add(Upper);
         this.add(Lower);
 
         this.retiros = new PanelRetiros();
-        this.panelBotones = new PanelBotones();
-        this.CreadorMonedas = new PanelCrearMonedas();
+        this.CreadorMonedas = new PanelCrearMonedas(this);
+        this.panelBotones = new PanelBotones(this);
 
         Upper.add(retiros);
         Upper.add(panelBotones);
@@ -31,4 +33,6 @@ public class PanelComprador extends JPanel {
         this.setBackground(Color.LIGHT_GRAY);
 
     }
+    public int getValorSelect() {return valorSelect;}
+    public void setValorSelect(int v) {valorSelect = v;}
 }

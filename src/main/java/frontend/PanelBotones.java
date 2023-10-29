@@ -5,8 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 public class PanelBotones extends JPanel implements ActionListener {
-    JButton[] botones;
-    public PanelBotones(){
+    private JButton[] botones;
+    private PanelComprador panelComprador;
+    public PanelBotones(PanelComprador p){
+        this.panelComprador = p;
         this.setLayout(new GridLayout(5,1));
         this.botones = new JButton[5];
         botones[0] = new JButton("Coca Cola");
@@ -26,9 +28,11 @@ public class PanelBotones extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < botones.length; i++) {
-            if (e.getSource() == botones[i]) {
+            if (e.getSource() == botones[i] && panelComprador.getValorSelect() >= Catalogo.values()[i].precio) {
+                System.out.println("yay");
 
             }
         }
     }
+    public JButton[] getBotones() {return botones;}
 }
