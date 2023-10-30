@@ -21,8 +21,6 @@ public class PanelBotones extends JPanel implements ActionListener {
             botones[i].addActionListener(this);
             this.add(botones[i]);
         }
-
-
     }
 
     @Override
@@ -32,6 +30,7 @@ public class PanelBotones extends JPanel implements ActionListener {
                 System.out.println("yay");
                 try {
                     Controller.CompraExitosa(i, Controller.CrearMoneda(panelComprador.getValMonedaSelect()));
+                    panelComprador.repaint();
                 } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
                     throw new RuntimeException(ex);
                 }

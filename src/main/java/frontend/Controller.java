@@ -1,8 +1,10 @@
 package frontend;
 import backend.*;
 
+/* todo: implementar panelcomprador de una forma que no tenga que usar esto? o bien utilizar este Expendedor static para todo */
+
 public class Controller {
-    private static Expendedor expendedor = new Expendedor(3);
+    public static Expendedor expendedor = new Expendedor(3);
     private static boolean CompraExitosaFlag = false;
     private static PanelPrincipal panel;
     public static void setPanel(PanelPrincipal p) {

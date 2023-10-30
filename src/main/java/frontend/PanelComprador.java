@@ -11,7 +11,7 @@ public class PanelComprador extends JPanel {
         ValMonedaSelect = 0;
         this.panelBotones = new PanelBotones(this);
         this.panelCrearMonedas = new PanelCrearMonedas(this);
-        panelRetiros = new PanelRetiros();
+        this.panelRetiros = new PanelRetiros(this);
         JPanel Upper = new JPanel();
         JPanel Lower = new JPanel();
 

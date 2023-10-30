@@ -1,10 +1,11 @@
 package frontend;
 import java.awt.Component;
 import java.awt.event.*;
-import javax.swing.*;
 import java.util.ArrayList;
 
-public class Actualizador implements ActionListener {
+/* Puede que borre esta clase, es de prueba. */
+
+public class ActualizadorTimer implements ActionListener {
     private static ArrayList<Component> components = new ArrayList<>();
     public void addComponent(Component component) {
         components.add(component);
