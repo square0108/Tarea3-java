@@ -49,9 +49,8 @@ public class Expendedor {
      * @throws PagoInsuficienteException Ocurre en caso de que el valor de la moneda ingresada sea menor al precio del producto.
      */
 
-    public void comprarProducto(int ID, Moneda moneda) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
+    public Producto comprarProducto(int ID, Moneda moneda) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         /* Antes de ejecutar cualquier paso, se revisa que la moneda sea valida (no null). */
-        /* todo: arreglar esta excepcion*/
         if (moneda == null) throw new PagoIncorrectoException();
 
         /* Se crea la siguiente variable para verificar dos cosas: Que el ID ingresado sea valido, y que el pago ingresado sea suficiente. */
@@ -107,18 +106,22 @@ public class Expendedor {
 
         /* Guarda la moneda ingresada permanentemente */
         monUsadas.add(moneda);
-    }
 
-    public Producto getProducto() {
-        Producto OUT = ProductoAlmacenado;
-        ProductoAlmacenado = null;
-        return OUT;
+        /*finalmente return*/
+        return ProductoAlmacenado;
     }
 
     /**
      * @return Moneda recogida por usuario desde deposito de vuelto
      */
     public Moneda getVuelto(){return monVu.get();}
+
+    /**
+     * @return Permite ver el valor entero representando el vuelto total a devolver, sin sacar monedas.
+     */
+    public int verVuelto(){
+        return monVu.size()*100;
+    }
 
     /*Getters de Depositos*/
     public Deposito<Producto> getCoca() {

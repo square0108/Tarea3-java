@@ -1,4 +1,6 @@
 package frontend;
+import backend.Producto;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -23,7 +25,7 @@ public class PanelRetiros extends JPanel implements ActionListener{
             this.remove(buttons[i]);
         }
 
-        if (Controller.HayProductoComprado()) buttons = new JButton[]{new JButton("Retirar Producto (1 disponible)"), new JButton("Retirar Vuelto (kaching)")};
+        if (Controller.VerProducto() != null) buttons = new JButton[]{new JButton("Retirar Producto (1 disponible)"), new JButton("Retirar Vuelto")};
         else buttons = new JButton[]{new JButton("Retirar Producto"), new JButton("Retirar Vuelto")};
 
         for (int i = 0; i < buttons.length; i++) {
@@ -34,10 +36,10 @@ public class PanelRetiros extends JPanel implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == buttons[0] && Controller.HayProductoComprado()) {
-            Controller.GetProducto();
+        if (e.getSource() == buttons[0] && Controller.VerProducto() != null) {
+            Producto SADMAN = Controller.GetProducto();
             repaint();
-            System.out.println("glu glu");
+            System.out.println("glu glu, " + SADMAN.consumir());
         }
     }
 }

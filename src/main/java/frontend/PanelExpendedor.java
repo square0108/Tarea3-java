@@ -1,9 +1,11 @@
 package frontend;
 
 import backend.*;
-
+import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelExpendedor extends JPanel {
     private Expendedor expendedor;
@@ -14,6 +16,8 @@ public class PanelExpendedor extends JPanel {
     private PanelDepositoProductos depositosuper8;
     private PanelDepositoMonedas depositovuelto;
     private Producto productocomprado;
+    private ActualizadorTimer refresh = new ActualizadorTimer();
+
     public PanelExpendedor(Expendedor expendedor){
         this.setLayout(new GridLayout(7,1));
         this.expendedor = expendedor;
@@ -32,6 +36,13 @@ public class PanelExpendedor extends JPanel {
         this.add(depositosnickers);
         this.add(depositosuper8);
         this.add(depositovuelto);
+
+        /* TODO: Solo por ahora: este timer utiliza la clase ActualizadorTimer, un ArrayList que llama repaint() en cada componente de su array.
+        *  El timer hace que este componente (depositovuelto) se le llame repaint() cada 500 milisegundos. */
+        refresh.addComponent(depositovuelto);
+        Timer horario = new Timer(500, refresh);
+        horario.setRepeats(true);
+        horario.start();
     }
     // Tengo que ver como devolver esto
     public Producto getProducto(){

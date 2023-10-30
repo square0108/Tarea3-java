@@ -4,6 +4,7 @@ package backend;
  * Una clase que entrega las funcionalidades de comprador. Interactua con <code>Expendedor</code>.
  * @see Expendedor
  */
+@Deprecated
 public class Comprador {
     private String sabor;
     private int vuelto;
@@ -22,8 +23,8 @@ public class Comprador {
         /*No estoy completamente seguro de que los errores tengas que manejarse de esta forma*/
 
         try{
-            expendedor.comprarProducto(producto, moneda);
-            sabor = expendedor.getProducto().consumir();
+            Producto producto1 = expendedor.comprarProducto(producto, moneda);
+            sabor = producto1.consumir();
 
             // Quitar el vuelto del deposito monVu, hasta que quede vacio
             Moneda monedavuelto = expendedor.getVuelto();
