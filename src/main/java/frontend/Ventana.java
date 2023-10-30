@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class Ventana extends JFrame {
     public Ventana() {
-        super();
         this.setLayout(new BorderLayout());
         this.setSize(1280,720);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

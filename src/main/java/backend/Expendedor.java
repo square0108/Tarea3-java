@@ -52,7 +52,7 @@ public class Expendedor {
     public void comprarProducto(int ID, Moneda moneda) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         /* Antes de ejecutar cualquier paso, se revisa que la moneda sea valida (no null). */
         /* todo: arreglar esta excepcion*/
-        if (monUsadas.isEmpty()) throw new PagoIncorrectoException();
+        if (moneda == null) throw new PagoIncorrectoException();
 
         /* Se crea la siguiente variable para verificar dos cosas: Que el ID ingresado sea valido, y que el pago ingresado sea suficiente. */
         Catalogo Compra = null;
@@ -104,6 +104,15 @@ public class Expendedor {
             Moneda100 moneda100 = new Moneda100();
             monVu.add(moneda100);
         }
+
+        /* Guarda la moneda ingresada permanentemente */
+        monUsadas.add(moneda);
+    }
+
+    public Producto getProducto() {
+        Producto OUT = ProductoAlmacenado;
+        ProductoAlmacenado = null;
+        return OUT;
     }
 
     /**

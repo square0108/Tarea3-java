@@ -11,6 +11,7 @@ public class PanelCrearMonedas extends JPanel implements ActionListener {
     public PanelCrearMonedas(PanelComprador p) {
         this.montos = new JRadioButton[4];
         this.bgroup = new ButtonGroup();
+        this.panelComprador = p;
         this.setLayout(new FlowLayout());
 
         JRadioButton Mon100 = new JRadioButton("$100");
@@ -42,7 +43,7 @@ public class PanelCrearMonedas extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < bgroup.getButtonCount(); i++) {
             if (e.getSource() == montos[i]) {
-                panelComprador.setValorSelect(MonedasInfo.values()[i].valor);
+                panelComprador.setValMonedaSelect(MonedasInfo.values()[i].valor);
             }
         }
     }

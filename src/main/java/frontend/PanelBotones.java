@@ -28,8 +28,13 @@ public class PanelBotones extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < botones.length; i++) {
-            if (e.getSource() == botones[i] && panelComprador.getValorSelect() >= Catalogo.values()[i].precio) {
+            if (e.getSource() == botones[i] && panelComprador.getValMonedaSelect() >= Catalogo.values()[i].precio) {
                 System.out.println("yay");
+                try {
+                    Controller.CompraExitosa(i, Controller.CrearMoneda(panelComprador.getValMonedaSelect()));
+                } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         }
     }

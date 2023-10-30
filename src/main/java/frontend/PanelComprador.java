@@ -1,41 +1,34 @@
 package frontend;
-
-import backend.*;
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class PanelComprador extends JPanel {
-    private PanelRetiros retiros;
     private PanelBotones panelBotones;
-    private PanelCrearMonedas CreadorMonedas;
-    private JPanel Upper;
-    private JPanel Lower;
-    private Expendedor TestExpendedorPlsDelete;
-    private int valorSelect;
-
+    private PanelCrearMonedas panelCrearMonedas;
+    private PanelRetiros panelRetiros;
+    private int ValMonedaSelect;
     public PanelComprador() {
-        TestExpendedorPlsDelete = new Expendedor(3);
-        Upper = new JPanel();
-        Lower = new JPanel();
-        Upper.setLayout(new GridLayout(1,2));
-        Lower.setLayout(new BorderLayout());
-        this.valorSelect = 0;
-        GridLayout grid = new GridLayout(2,1);
-        this.setLayout(grid);
+        ValMonedaSelect = 0;
+        this.panelBotones = new PanelBotones(this);
+        this.panelCrearMonedas = new PanelCrearMonedas(this);
+        panelRetiros = new PanelRetiros();
+        JPanel Upper = new JPanel();
+        JPanel Lower = new JPanel();
+
+        this.setLayout(new GridLayout(2,1));
         this.add(Upper);
         this.add(Lower);
-
-        this.retiros = new PanelRetiros();
-        this.CreadorMonedas = new PanelCrearMonedas(this);
-        this.panelBotones = new PanelBotones(this);
-
-        Upper.add(retiros);
+        Upper.setLayout(new GridLayout(1,2));
+        Upper.add(panelRetiros);
         Upper.add(panelBotones);
-        Lower.add(CreadorMonedas, BorderLayout.NORTH);
-
-        this.setBackground(Color.LIGHT_GRAY);
-
+        Lower.add(panelCrearMonedas);
     }
-    public int getValorSelect() {return valorSelect;}
-    public void setValorSelect(int v) {valorSelect = v;}
+
+    public int getValMonedaSelect() {
+        return ValMonedaSelect;
+    }
+
+    public void setValMonedaSelect(int valMonedaSelect) {
+        ValMonedaSelect = valMonedaSelect;
+    }
 }

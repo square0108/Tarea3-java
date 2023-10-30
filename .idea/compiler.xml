@@ -9,5 +9,8 @@
         <module name="Tarea2-java" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Tarea3-java" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
