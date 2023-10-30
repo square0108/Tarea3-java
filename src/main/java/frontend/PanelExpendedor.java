@@ -15,7 +15,9 @@ public class PanelExpendedor extends JPanel {
     private PanelDepositoMonedas depositovuelto;
     private Producto productocomprado;
     public PanelExpendedor(Expendedor expendedor){
-        this.setLayout(new GridLayout(7,1));
+        // TODO: El expendedor se debe crear dentro de este constructor
+
+        this.setLayout(new GridLayout(6,1));
         this.expendedor = expendedor;
         productocomprado = null;
 
@@ -35,10 +37,8 @@ public class PanelExpendedor extends JPanel {
     }
     // Tengo que ver como devolver esto
     public Producto getProducto(){
-        Producto producto;
-        producto = this.productocomprado;
-        this.productocomprado = null;
-        return producto;
+        // se debe heredar de Panel producto
+        return null;
     }
     public void comprarProducto(int id,Moneda moneda){
         if (this.productocomprado != null){
