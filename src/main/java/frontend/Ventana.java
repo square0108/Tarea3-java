@@ -1,28 +1,27 @@
 package frontend;
+import backend.*;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class Ventana extends JFrame {
     public Ventana() {
+        super();
         this.setLayout(new BorderLayout());
-        this.setSize(1280,720);
+        this.setTitle("meow moew meoww mweo :3");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setSize(1280,720);
+        this.setLocationRelativeTo(null);
 
-        JPanel border1 = new JPanel();
-        JPanel border2 = new JPanel();
-        JPanel border3 = new JPanel();
-        JPanel border4 = new JPanel();
-        border1.setBackground(Color.RED);
-        border2.setBackground(Color.RED);
-        border3.setBackground(Color.RED);
-        border4.setBackground(Color.RED);
+        JPanel panel = new JPanel(new GridLayout(1,1));
 
-        this.add(new PanelPrincipal(),BorderLayout.CENTER);
-        this.add(border1, BorderLayout.NORTH);
-        this.add(border2, BorderLayout.EAST);
-        this.add(border3, BorderLayout.SOUTH);
-        this.add(border4, BorderLayout.WEST);
+        Expendedor expendedor = new Expendedor(5);
+        PanelExpendedor expendedorpanel = new PanelExpendedor(expendedor);
+        expendedorpanel.comprarProducto(0,new Moneda500());
+        panel.add(expendedorpanel);
+
+        this.add(panel,BorderLayout.CENTER);
+
         this.setVisible(true);
     }
 }

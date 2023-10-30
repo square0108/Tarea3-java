@@ -1,10 +1,10 @@
 package frontend;
-import backend.*;
+import java.awt.*;
+import javax.swing.*;
 
 public class Testing {
-    public static Expendedor EX;
     public static void main(String[] args) {
-        EX = new Expendedor(3);
+
         Ventana Window = new Ventana();
     }
 }

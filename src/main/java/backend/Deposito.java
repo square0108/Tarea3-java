@@ -31,7 +31,21 @@ public class Deposito<T> {
             return null;
         }
     }
-    public boolean isEmpty() {
-        return this.array.isEmpty();
+
+    /**
+     * Entrega la cantidad de objetos dentro del deposito
+     * @return cantidad de objetos: int
+     */
+    public int size(){
+        return array.size();
+    }
+
+    /**
+     * Entrega la referencia de un objeto dentro del deposito, no lo saca de este.
+     * @param i indice del objeto.
+     * @return referencia al objeto.
+     */
+    public T getItem(int i){
+        return array.get(i);
     }
 }
