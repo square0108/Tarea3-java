@@ -119,7 +119,7 @@ public class Expendedor {
     /**
      * @return Permite ver el valor entero representando el vuelto total a devolver, sin sacar monedas.
      */
-    public int verVuelto(){
+    public int verVueltoInt(){
         return monVu.size()*100;
     }
 

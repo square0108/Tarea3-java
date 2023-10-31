@@ -25,7 +25,8 @@ public class PanelRetiros extends JPanel implements ActionListener{
             this.remove(buttons[i]);
         }
 
-        if (Controller.VerProducto() != null) buttons = new JButton[]{new JButton("Retirar Producto (1 disponible)"), new JButton("Retirar Vuelto")};
+        if (Controller.VerProducto() != null && Controller.ValorVuelto() > 0) buttons = new JButton[]{new JButton("Retirar Producto (1 disponible)"), new JButton("Retirar Vuelto (kaching)")};
+        else if (Controller.VerProducto() == null && Controller.ValorVuelto() > 0) buttons = new JButton[]{new JButton("Retirar Producto"), new JButton("Retirar Vuelto (kaching)")};
         else buttons = new JButton[]{new JButton("Retirar Producto"), new JButton("Retirar Vuelto")};
 
         for (int i = 0; i < buttons.length; i++) {
@@ -38,8 +39,14 @@ public class PanelRetiros extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttons[0] && Controller.VerProducto() != null) {
             Producto SADMAN = Controller.GetProducto();
-            repaint();
+            Controller.RepaintAll();
             System.out.println("glu glu, " + SADMAN.consumir());
+        }
+        /* TODO: Supongo que no se hace nada con este vuelto una vez que esta fuera del expendedor?*/
+        else if (e.getSource() == buttons[1] && Controller.ValorVuelto() > 0) {
+            Controller.GetVueltoAll();
+            Controller.RepaintAll();
+            System.out.println("Saqueaste la maquina");
         }
     }
 }

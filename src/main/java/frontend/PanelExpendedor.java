@@ -16,19 +16,18 @@ public class PanelExpendedor extends JPanel {
     private PanelDepositoProductos depositosuper8;
     private PanelDepositoMonedas depositovuelto;
     private Producto productocomprado;
-    private ActualizadorTimer refresh = new ActualizadorTimer();
 
     public PanelExpendedor(Expendedor expendedor){
         this.setLayout(new GridLayout(7,1));
         this.expendedor = expendedor;
         productocomprado = null;
 
-        depositococa = new PanelDepositoProductos(expendedor.getCoca(), Catalogo.COCA.id);
-        depositosprite = new PanelDepositoProductos(expendedor.getSprite(), Catalogo.SPRITE.id);
-        depositofanta = new PanelDepositoProductos(expendedor.getFanta(), Catalogo.FANTA.id);
-        depositosnickers= new PanelDepositoProductos(expendedor.getSnickers(), Catalogo.SNICKERS.id);
-        depositosuper8 = new PanelDepositoProductos(expendedor.getSuper8(), Catalogo.SUPER8.id);
-        depositovuelto = new PanelDepositoMonedas(expendedor.getMonVu());
+        depositococa = new PanelDepositoProductos(this.expendedor.getCoca(), Catalogo.COCA.id);
+        depositosprite = new PanelDepositoProductos(this.expendedor.getSprite(), Catalogo.SPRITE.id);
+        depositofanta = new PanelDepositoProductos(this.expendedor.getFanta(), Catalogo.FANTA.id);
+        depositosnickers= new PanelDepositoProductos(this.expendedor.getSnickers(), Catalogo.SNICKERS.id);
+        depositosuper8 = new PanelDepositoProductos(this.expendedor.getSuper8(), Catalogo.SUPER8.id);
+        depositovuelto = new PanelDepositoMonedas(this.expendedor.getMonVu());
 
         this.add(depositococa);
         this.add(depositosprite);
@@ -37,13 +36,9 @@ public class PanelExpendedor extends JPanel {
         this.add(depositosuper8);
         this.add(depositovuelto);
 
-        /* TODO: Solo por ahora: este timer utiliza la clase ActualizadorTimer, un ArrayList que llama repaint() en cada componente de su array.
-        *  El timer hace que este componente (depositovuelto) se le llame repaint() cada 500 milisegundos. */
-        refresh.addComponent(depositovuelto);
-        Timer horario = new Timer(500, refresh);
-        horario.setRepeats(true);
-        horario.start();
     }
+    /* borrar esto >?
+
     // Tengo que ver como devolver esto
     public Producto getProducto(){
         Producto producto;
@@ -70,6 +65,8 @@ public class PanelExpendedor extends JPanel {
         }
         repaint();
     }
+
+    */
 
     @Override
     public void paint(Graphics g) {

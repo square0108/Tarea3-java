@@ -30,7 +30,7 @@ public class PanelBotones extends JPanel implements ActionListener {
                 System.out.println("yay");
                 try {
                     Controller.CompraExitosa(i, Controller.CrearMoneda(panelComprador.getValMonedaSelect()));
-                    panelComprador.repaint();
+                    Controller.RepaintAll();
                 } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
                     throw new RuntimeException(ex);
                 }

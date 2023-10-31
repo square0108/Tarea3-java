@@ -3,10 +3,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class PanelPrincipal extends JPanel {
-    private PanelComprador com;
-    private PanelExpendedor exp;
+    private static PanelComprador com;
+    private static PanelExpendedor exp;
     private GridLayout grid;
-    public PanelPrincipal () {;
+    public PanelPrincipal () {
+        new Controller(this);
         grid = new GridLayout(1,2);
         this.setLayout(grid);
 
@@ -15,4 +16,5 @@ public class PanelPrincipal extends JPanel {
         this.add(com);
         this.add(exp);
     }
+
 }

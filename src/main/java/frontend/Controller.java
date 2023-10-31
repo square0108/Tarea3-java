@@ -5,8 +5,12 @@ import backend.*;
 
 public class Controller {
     public static Expendedor expendedor = new Expendedor(4);
+    private static PanelPrincipal panelPrincipal;
     private static Producto ProductoARetirar = null;
 
+    public Controller(PanelPrincipal p) {
+        panelPrincipal = p;
+    }
     public static void CompraExitosa(int p, Moneda m) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
         try {
             ProductoARetirar = expendedor.comprarProducto(p, m);
@@ -33,6 +37,16 @@ public class Controller {
         Producto swap = ProductoARetirar;
         ProductoARetirar = null;
         return swap;
+    }
+    public static int ValorVuelto() {return expendedor.verVueltoInt();}
+    /* TODO: Este vuelto va a algun lado? */
+    public static void GetVueltoAll() {
+        while(expendedor.getMonVu().size() > 0) {
+            expendedor.getVuelto();
+        }
+    }
+    public static void RepaintAll() {
+        panelPrincipal.repaint();
     }
 
 }
