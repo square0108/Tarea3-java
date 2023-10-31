@@ -19,9 +19,11 @@ public class PanelComprador extends JPanel {
         this.add(Upper);
         this.add(Lower);
         Upper.setLayout(new GridLayout(1,2));
+        Lower.setLayout(new GridLayout(2,1));
         Upper.add(panelRetiros);
         Upper.add(panelBotones);
         Lower.add(panelCrearMonedas);
+        Lower.add(new JButton("asdasd"));
     }
 
     public int getValMonedaSelect() {
