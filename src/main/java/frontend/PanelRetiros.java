@@ -27,6 +27,7 @@ public class PanelRetiros extends JPanel implements ActionListener{
 
         if (Controller.VerProducto() != null && Controller.ValorVuelto() > 0) buttons = new JButton[]{new JButton("Retirar Producto (1 disponible)"), new JButton("Retirar Vuelto (kaching)")};
         else if (Controller.VerProducto() == null && Controller.ValorVuelto() > 0) buttons = new JButton[]{new JButton("Retirar Producto"), new JButton("Retirar Vuelto (kaching)")};
+        else if (Controller.VerProducto() != null && Controller.ValorVuelto() == 0) buttons = new JButton[]{new JButton("Retirar Producto (1 disponible)"), new JButton("Retirar Vuelto")};
         else buttons = new JButton[]{new JButton("Retirar Producto"), new JButton("Retirar Vuelto")};
 
         for (int i = 0; i < buttons.length; i++) {
