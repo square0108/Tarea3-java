@@ -5,8 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 public class PanelBotones extends JPanel implements ActionListener {
-    private JButton[] botones;
-    private PanelComprador panelComprador;
+    private final JButton[] botones;
+    private final PanelComprador panelComprador;
+
+    /**
+     * Botones[] es un array fijo conteniendo los botones para comprar productos. Cada uno tiene un ActionListener que escucha si el boton ha sido presionado.
+     * @param p Referencia al PanelComprador al cual pertenece este JPanel.
+     */
     public PanelBotones(PanelComprador p){
         this.panelComprador = p;
         this.setLayout(new GridLayout(5,1));
@@ -23,6 +28,11 @@ public class PanelBotones extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Notar que el boton no hace nada si hay un producto disponible para retirar.
+     * Si el pago es insuficiente no se compra nada y se devuelve la misma moneda. (Esto es manejado por las excepciones del backend, que depositan la moneda en MonVu).
+     * @param e the event to be processed (en este caso mouseclick, a traves de e.getSource() == botones[i]).
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         //TODO: Se podria poner de forma más elegante, es solo para probar
@@ -34,7 +44,7 @@ public class PanelBotones extends JPanel implements ActionListener {
             if (e.getSource() == botones[i] && Controller.VerProducto() == null) {
                 System.out.println("yay");
                 try {
-                    Controller.CompraExitosa(i, Controller.CrearMoneda(panelComprador.getValMonedaSelect()));
+                    Controller.ComprarProducto(i, Controller.CrearMoneda(panelComprador.getValMonedaSelect()));
                     Controller.RepaintAll();
                 } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
                     throw new RuntimeException(ex);
@@ -42,5 +52,4 @@ public class PanelBotones extends JPanel implements ActionListener {
             }
         }
     }
-    public JButton[] getBotones() {return botones;}
 }

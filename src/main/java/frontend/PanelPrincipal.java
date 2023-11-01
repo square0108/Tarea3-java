@@ -7,7 +7,7 @@ public class PanelPrincipal extends JPanel {
     private static PanelExpendedor exp;
     private GridLayout grid;
     public PanelPrincipal () {
-        new Controller(this);
+        Controller.setPanelPrincipal(this);
         grid = new GridLayout(1,2);
         this.setLayout(grid);
 
@@ -15,12 +15,5 @@ public class PanelPrincipal extends JPanel {
         exp = new PanelExpendedor(Controller.expendedor);
         this.add(com);
         this.add(exp);
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        com.paint(g);
-        exp.paint(g);
     }
 }

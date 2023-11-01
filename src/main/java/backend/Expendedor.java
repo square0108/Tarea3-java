@@ -10,8 +10,8 @@ public class Expendedor {
     private Deposito<Producto> snickers;
     private Deposito<Producto> super8;
     private Deposito<Moneda> monVu;
-    private Deposito<Moneda> monUsadas;
-    private Producto ProductoAlmacenado;
+    private final Deposito<Moneda> monUsadas; /* Esta propiedad fue agergada con el frontend. El enunciado especifica que las monedas usadas deben ser guardadas. (aunque no dice que deben ser mostradas..?) */
+    private Producto ProductoAlmacenado; /* Esta propiedad fue agregada con el frontend. Corresponde al producto a retirar. */
 
     /**
      * Metodo constructor de Expendedor. Genera un stock dentro de los depositos de Productos de Expendedor.
@@ -105,7 +105,7 @@ public class Expendedor {
         }
 
         /* Guarda la moneda ingresada permanentemente */
-        monUsadas.add(moneda);
+        this.monUsadas.add(moneda);
 
         /*finalmente return*/
         return ProductoAlmacenado;
@@ -117,10 +117,21 @@ public class Expendedor {
     public Moneda getVuelto(){return monVu.get();}
 
     /**
-     * @return Permite ver el valor entero representando el vuelto total a devolver, sin sacar monedas.
+     * @return Permite ver alguna de las monedas contenidas en el deposito de vuelto.
      */
-    public int verVueltoInt(){
-        return monVu.size()*100;
+    public Moneda verVuelto(int index){
+        if (monVu.size() == 0) return null;
+        else return monVu.getItem(index);
+    }
+
+    public Producto retirarProductoAlmacenado() {
+        Producto swap = this.ProductoAlmacenado;
+        this.ProductoAlmacenado = null;
+        return swap;
+    }
+
+    public Producto verProductoAlmacenado() {
+        return this.ProductoAlmacenado;
     }
 
     /*Getters de Depositos*/
@@ -147,4 +158,6 @@ public class Expendedor {
     public Deposito<Moneda> getMonVu() {
         return monVu;
     }
+
+    public Deposito <Moneda> getMonUsadas() {return monUsadas;}
 }

@@ -8,15 +8,16 @@ import javax.swing.*;
 public class Controller {
     public static Expendedor expendedor = new Expendedor(4);
     private static PanelPrincipal panelPrincipal;
-    // TODO: NO tendria más sentido poner el producto a retirar en Expendedor backend?
-    private static Producto ProductoARetirar = null;
 
-    public Controller(PanelPrincipal p) {
+    public Controller() {}
+
+    public static void setPanelPrincipal(PanelPrincipal p) {
         panelPrincipal = p;
     }
-    public static void CompraExitosa(int p, Moneda m) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
+
+    public static void ComprarProducto(int p, Moneda m) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
         try {
-            ProductoARetirar = expendedor.comprarProducto(p, m);
+            expendedor.comprarProducto(p, m);
         } catch (NoHayProductoException e){
             JOptionPane.showMessageDialog(null,"ERROR: No hay más productos");
             System.out.println("No hay mas productos");
@@ -29,8 +30,9 @@ public class Controller {
             JOptionPane.showMessageDialog(null,"ERROR: No tienes la cantidad de dinero suficiente");
             System.out.println("No tienes la cantidad de dinero suficiente");
         }
-        System.out.println("Producto a retirar: " + ProductoARetirar);
+        System.out.println("Producto a retirar: " + VerProducto());
     }
+
     public static Moneda CrearMoneda(int valor) {
         if (valor == 100) return new Moneda100();
         else if (valor == 500) return new Moneda500();
@@ -38,19 +40,26 @@ public class Controller {
         else if (valor == 1500) return new Moneda1500();
         else return null;
     }
-    public static Producto VerProducto() {return ProductoARetirar;}
-    public static Producto GetProducto() {
-        Producto swap = ProductoARetirar;
-        ProductoARetirar = null;
-        return swap;
+
+    public static Producto VerProducto() {return expendedor.verProductoAlmacenado();}
+
+    public static Producto RetirarProducto() {return expendedor.retirarProductoAlmacenado();}
+
+    public static Moneda VerVuelto(int index) {
+        return expendedor.verVuelto(index);
     }
-    public static int ValorVuelto() {return expendedor.verVueltoInt();}
+
     /* TODO: Este vuelto va a algun lado? */
     public static void GetVueltoAll() {
         while(expendedor.getMonVu().size() > 0) {
             expendedor.getVuelto();
         }
     }
+
+    public static Moneda QueMonedaUsaste() {
+        return expendedor.getMonUsadas().getItem(0);
+    }
+
     /* TODO: no se me ocurre de momento como repaintear PanelExpendedor desde una compra en PanelComprador, asi que por ahora agrego RepaintAll() */
     public static void RepaintAll() {
         panelPrincipal.repaint();
