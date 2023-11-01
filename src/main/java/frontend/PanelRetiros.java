@@ -39,7 +39,7 @@ public class PanelRetiros extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttons[0] && Controller.VerProducto() != null) {
-            Producto SADMAN = Controller.GetProducto();
+            Producto SADMAN = Controller.RetirarProducto();
             Controller.RepaintAll();
             System.out.println("glu glu, " + SADMAN.consumir());
         }

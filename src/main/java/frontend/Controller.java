@@ -8,8 +8,6 @@ import javax.swing.*;
 public class Controller {
     public static Expendedor expendedor = new Expendedor(4);
     private static PanelPrincipal panelPrincipal;
-    // TODO: NO tendria más sentido poner el producto a retirar en Expendedor backend?
-    private static Producto ProductoARetirar = null;
 
     public Controller(PanelPrincipal p) {}
 
@@ -19,7 +17,7 @@ public class Controller {
 
     public static void CompraExitosa(int p, Moneda m) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
         try {
-            ProductoARetirar = expendedor.comprarProducto(p, m);
+            expendedor.comprarProducto(p, m);
         } catch (NoHayProductoException e){
             JOptionPane.showMessageDialog(null,"ERROR: No hay más productos");
             System.out.println("No hay mas productos");
@@ -32,7 +30,7 @@ public class Controller {
             JOptionPane.showMessageDialog(null,"ERROR: No tienes la cantidad de dinero suficiente");
             System.out.println("No tienes la cantidad de dinero suficiente");
         }
-        System.out.println("Producto a retirar: " + ProductoARetirar);
+        System.out.println("Producto a retirar: " + expendedor.verProductoAlmacenado());
     }
 
     public static Moneda CrearMoneda(int valor) {
@@ -43,13 +41,9 @@ public class Controller {
         else return null;
     }
 
-    public static Producto VerProducto() {return ProductoARetirar;}
+    public static Producto VerProducto() {return expendedor.verProductoAlmacenado();}
 
-    public static Producto GetProducto() {
-        Producto swap = ProductoARetirar;
-        ProductoARetirar = null;
-        return swap;
-    }
+    public static Producto RetirarProducto() {return expendedor.retirarProductoAlmacenado();}
 
     public static int ValorVuelto() {return expendedor.verVueltoInt();}
 

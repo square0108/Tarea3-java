@@ -25,7 +25,7 @@ public class Expendedor {
         this.super8 = new Deposito<>();
         this.monVu = new Deposito<>();
         this.monUsadas = new Deposito<>();
-        this.ProductoAlmacenado = null;
+        this.ProductoAlmacenado = null; /* Esta propiedad fue agregada con el frontend. */
 
         /* Se rellenan todos los depositos con la misma cantidad de stock. */
         if (stock>0){
@@ -123,6 +123,16 @@ public class Expendedor {
         return monVu.size()*100;
     }
 
+    public Producto retirarProductoAlmacenado() {
+        Producto swap = this.ProductoAlmacenado;
+        this.ProductoAlmacenado = null;
+        return swap;
+    }
+
+    public Producto verProductoAlmacenado() {
+        return this.ProductoAlmacenado;
+    }
+
     /*Getters de Depositos*/
     public Deposito<Producto> getCoca() {
         return coca;
@@ -147,4 +157,5 @@ public class Expendedor {
     public Deposito<Moneda> getMonVu() {
         return monVu;
     }
+
 }
