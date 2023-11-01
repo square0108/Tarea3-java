@@ -66,7 +66,6 @@ public class PanelDepositoProductos extends JPanel {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Test, mouse listener de deposito funciona y agrega item " + id);
                 add();
             }
             @Override

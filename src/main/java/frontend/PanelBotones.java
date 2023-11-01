@@ -25,8 +25,13 @@ public class PanelBotones extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //TODO: Se podria poner de forma más elegante, es solo para probar
+        if (Controller.VerProducto() !=null){
+            JOptionPane.showMessageDialog(null,"ERROR: Recoja el producto en bandeja");
+        }
+        //--------------
         for (int i = 0; i < botones.length; i++) {
-            if (e.getSource() == botones[i]  && Controller.VerProducto() == null) {
+            if (e.getSource() == botones[i] && Controller.VerProducto() == null) {
                 System.out.println("yay");
                 try {
                     Controller.CompraExitosa(i, Controller.CrearMoneda(panelComprador.getValMonedaSelect()));
