@@ -6,6 +6,7 @@ import backend.*;
 public class Controller {
     public static Expendedor expendedor = new Expendedor(4);
     private static PanelPrincipal panelPrincipal;
+    // TODO: NO tendria más sentido poner el producto a retirar en Expendedor backend?
     private static Producto ProductoARetirar = null;
 
     public Controller(PanelPrincipal p) {

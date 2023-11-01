@@ -128,7 +128,7 @@ public class PanelDepositoProductos extends JPanel {
 
         for (int i=0; i<deposito.size(); i++){
             g.drawImage(image,i * getWidth()/deposito.size(), 20,this);
-            g.drawString(Integer.toString(deposito.getItem(i).getNumSerie()),i * getWidth()/deposito.size()+5,15);
+            g.drawString(Integer.toString(deposito.getItem(i).getNumSerie()),i * getWidth()/deposito.size()+20,15);
         }
     }
 }

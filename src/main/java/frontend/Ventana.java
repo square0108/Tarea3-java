@@ -12,6 +12,7 @@ public class Ventana extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
         PanelPrincipal MAIN = new PanelPrincipal();
 
