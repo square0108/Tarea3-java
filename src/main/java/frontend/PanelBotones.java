@@ -26,7 +26,7 @@ public class PanelBotones extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < botones.length; i++) {
-            if (e.getSource() == botones[i] && panelComprador.getValMonedaSelect() >= Catalogo.values()[i].precio && Controller.VerProducto() == null) {
+            if (e.getSource() == botones[i]  && Controller.VerProducto() == null) {
                 System.out.println("yay");
                 try {
                     Controller.CompraExitosa(i, Controller.CrearMoneda(panelComprador.getValMonedaSelect()));

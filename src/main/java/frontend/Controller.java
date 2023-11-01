@@ -45,7 +45,7 @@ public class Controller {
             expendedor.getVuelto();
         }
     }
-    /* TODO: no se me ocurre de momento como repaintear PanelExpendedor desde una compra en PanelComprador, asi que por ahora agrego esto */
+    /* TODO: no se me ocurre de momento como repaintear PanelExpendedor desde una compra en PanelComprador, asi que por ahora agrego RepaintAll() */
     public static void RepaintAll() {
         panelPrincipal.repaint();
     }
