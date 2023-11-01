@@ -9,13 +9,13 @@ public class Controller {
     public static Expendedor expendedor = new Expendedor(4);
     private static PanelPrincipal panelPrincipal;
 
-    public Controller(PanelPrincipal p) {}
+    public Controller() {}
 
     public static void setPanelPrincipal(PanelPrincipal p) {
         panelPrincipal = p;
     }
 
-    public static void CompraExitosa(int p, Moneda m) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
+    public static void ComprarProducto(int p, Moneda m) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
         try {
             expendedor.comprarProducto(p, m);
         } catch (NoHayProductoException e){
@@ -45,7 +45,16 @@ public class Controller {
 
     public static Producto RetirarProducto() {return expendedor.retirarProductoAlmacenado();}
 
-    public static int ValorVuelto() {return expendedor.verVueltoInt();}
+    public static int VerValorVuelto() {
+        if (expendedor.verVuelto(0) == null) return 0;
+        else {
+            int sum = 0;
+            for (int i = 0; i < expendedor.getMonVu().size(); i++) {
+                sum = sum + expendedor.verVuelto(i).getValor();
+            }
+            return sum;
+        }
+    }
 
     /* TODO: Este vuelto va a algun lado? */
     public static void GetVueltoAll() {

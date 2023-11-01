@@ -117,10 +117,11 @@ public class Expendedor {
     public Moneda getVuelto(){return monVu.get();}
 
     /**
-     * @return Permite ver el valor entero representando el vuelto total a devolver, sin sacar monedas.
+     * @return Permite ver alguna de las monedas contenidas en el deposito de vuelto.
      */
-    public int verVueltoInt(){
-        return monVu.size()*100;
+    public Moneda verVuelto(int index){
+        if (monVu.size() == 0) return null;
+        else return monVu.getItem(index);
     }
 
     public Producto retirarProductoAlmacenado() {
