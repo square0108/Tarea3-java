@@ -5,8 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 public class PanelBotones extends JPanel implements ActionListener {
-    private JButton[] botones;
-    private PanelComprador panelComprador;
+    private final JButton[] botones;
+    private final PanelComprador panelComprador;
 
     /**
      * Botones[] es un array fijo conteniendo los botones para comprar productos. Cada uno tiene un ActionListener que escucha si el boton ha sido presionado.

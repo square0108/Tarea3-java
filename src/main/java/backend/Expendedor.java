@@ -10,8 +10,8 @@ public class Expendedor {
     private Deposito<Producto> snickers;
     private Deposito<Producto> super8;
     private Deposito<Moneda> monVu;
-    private Deposito<Moneda> monUsadas;
-    private Producto ProductoAlmacenado;
+    private final Deposito<Moneda> monUsadas; /* Esta propiedad fue agergada con el frontend. El enunciado especifica que las monedas usadas deben ser guardadas. (aunque no dice que deben ser mostradas..?) */
+    private Producto ProductoAlmacenado; /* Esta propiedad fue agregada con el frontend. Corresponde al producto a retirar. */
 
     /**
      * Metodo constructor de Expendedor. Genera un stock dentro de los depositos de Productos de Expendedor.
@@ -25,7 +25,7 @@ public class Expendedor {
         this.super8 = new Deposito<>();
         this.monVu = new Deposito<>();
         this.monUsadas = new Deposito<>();
-        this.ProductoAlmacenado = null; /* Esta propiedad fue agregada con el frontend. */
+        this.ProductoAlmacenado = null;
 
         /* Se rellenan todos los depositos con la misma cantidad de stock. */
         if (stock>0){
@@ -105,7 +105,7 @@ public class Expendedor {
         }
 
         /* Guarda la moneda ingresada permanentemente */
-        monUsadas.add(moneda);
+        this.monUsadas.add(moneda);
 
         /*finalmente return*/
         return ProductoAlmacenado;
@@ -159,4 +159,5 @@ public class Expendedor {
         return monVu;
     }
 
+    public Deposito <Moneda> getMonUsadas() {return monUsadas;}
 }

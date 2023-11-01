@@ -1,5 +1,5 @@
 package frontend;
-import backend.MonedasInfo;
+import backend.MonedasEnum;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -43,7 +43,7 @@ public class PanelCrearMonedas extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < bgroup.getButtonCount(); i++) {
             if (e.getSource() == montos[i]) {
-                panelComprador.setValMonedaSelect(MonedasInfo.values()[i].valor);
+                panelComprador.setValMonedaSelect(MonedasEnum.values()[i].valor);
             }
         }
     }

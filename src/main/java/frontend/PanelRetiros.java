@@ -25,10 +25,10 @@ public class PanelRetiros extends JPanel implements ActionListener{
             this.remove(buttons[i]);
         }
 
-        if (Controller.VerProducto() != null && Controller.VerValorVuelto() == 0) buttons = new JButton[]{new JButton("Retirar Producto (1 disponible)"), new JButton("Retirar Vuelto")};
-        else if (Controller.VerProducto() != null && Controller.VerValorVuelto() > 0) buttons = new JButton[]{new JButton("Retirar Producto (1 disponible)"), new JButton("Retirar Vuelto (kaching)")};
-        else if (Controller.VerProducto() == null && Controller.VerValorVuelto() > 0) buttons = new JButton[]{new JButton("Retirar Producto"), new JButton("Retirar Vuelto (kaching)")};
-        else buttons = new JButton[]{new JButton("Retirar Producto"), new JButton("Retirar Vuelto")};
+        if (Controller.VerProducto() == null && Controller.VerVuelto(0) == null) buttons = new JButton[]{new JButton("Retirar Producto"), new JButton("Retirar Vuelto")};
+        else if (Controller.VerProducto() != null && Controller.VerVuelto(0) == null) buttons = new JButton[]{new JButton("Retirar Producto (1 disponible)"), new JButton("Retirar Vuelto")};
+        else if (Controller.VerProducto() == null && Controller.VerVuelto(0) != null) buttons = new JButton[]{new JButton("Retirar Producto"), new JButton("Retirar Vuelto (kaching)")};
+        else buttons = new JButton[]{new JButton("Retirar Producto (1 disponible)"), new JButton("Retirar Vuelto (kaching)")};
 
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].addActionListener(this);
@@ -44,7 +44,7 @@ public class PanelRetiros extends JPanel implements ActionListener{
             System.out.println("glu glu, " + SADMAN.consumir());
         }
         /* TODO: Supongo que no se hace nada con este vuelto una vez que esta fuera del expendedor?*/
-        else if (e.getSource() == buttons[1] && Controller.VerValorVuelto() > 0) {
+        else if (e.getSource() == buttons[1] && Controller.VerVuelto(0) != null) {
             Controller.GetVueltoAll();
             Controller.RepaintAll();
             System.out.println("Saqueaste la maquina");

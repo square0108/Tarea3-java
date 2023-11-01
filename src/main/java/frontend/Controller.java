@@ -30,7 +30,7 @@ public class Controller {
             JOptionPane.showMessageDialog(null,"ERROR: No tienes la cantidad de dinero suficiente");
             System.out.println("No tienes la cantidad de dinero suficiente");
         }
-        System.out.println("Producto a retirar: " + expendedor.verProductoAlmacenado());
+        System.out.println("Producto a retirar: " + VerProducto());
     }
 
     public static Moneda CrearMoneda(int valor) {
@@ -45,15 +45,8 @@ public class Controller {
 
     public static Producto RetirarProducto() {return expendedor.retirarProductoAlmacenado();}
 
-    public static int VerValorVuelto() {
-        if (expendedor.verVuelto(0) == null) return 0;
-        else {
-            int sum = 0;
-            for (int i = 0; i < expendedor.getMonVu().size(); i++) {
-                sum = sum + expendedor.verVuelto(i).getValor();
-            }
-            return sum;
-        }
+    public static Moneda VerVuelto(int index) {
+        return expendedor.verVuelto(index);
     }
 
     /* TODO: Este vuelto va a algun lado? */
@@ -61,6 +54,10 @@ public class Controller {
         while(expendedor.getMonVu().size() > 0) {
             expendedor.getVuelto();
         }
+    }
+
+    public static Moneda QueMonedaUsaste() {
+        return expendedor.getMonUsadas().getItem(0);
     }
 
     /* TODO: no se me ocurre de momento como repaintear PanelExpendedor desde una compra en PanelComprador, asi que por ahora agrego RepaintAll() */
