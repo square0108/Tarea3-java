@@ -23,7 +23,7 @@ public class PanelComprador extends JPanel {
         Upper.add(panelRetiros);
         Upper.add(panelBotones);
         Lower.add(panelCrearMonedas);
-        Lower.add(new JButton("asdasd"));
+        Lower.add(new JButton("Monedas de Comprador¿?"));
     }
 
     public int getValMonedaSelect() {
