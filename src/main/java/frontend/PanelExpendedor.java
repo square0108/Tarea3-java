@@ -1,9 +1,11 @@
 package frontend;
 
 import backend.*;
-
+import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelExpendedor extends JPanel {
     private Expendedor expendedor;
@@ -14,6 +16,7 @@ public class PanelExpendedor extends JPanel {
     private PanelDepositoProductos depositosuper8;
     private PanelDepositoMonedas depositovuelto;
     private Producto productocomprado;
+
     public PanelExpendedor(Expendedor expendedor){
         // TODO: El expendedor se debe crear dentro de este constructor
 
@@ -21,12 +24,12 @@ public class PanelExpendedor extends JPanel {
         this.expendedor = expendedor;
         productocomprado = null;
 
-        depositococa = new PanelDepositoProductos(expendedor.getCoca(), Catalogo.COCA.id);
-        depositosprite = new PanelDepositoProductos(expendedor.getSprite(), Catalogo.SPRITE.id);
-        depositofanta = new PanelDepositoProductos(expendedor.getFanta(), Catalogo.FANTA.id);
-        depositosnickers= new PanelDepositoProductos(expendedor.getSnickers(), Catalogo.SNICKERS.id);
-        depositosuper8 = new PanelDepositoProductos(expendedor.getSuper8(), Catalogo.SUPER8.id);
-        depositovuelto = new PanelDepositoMonedas(expendedor.getMonVu());
+        depositococa = new PanelDepositoProductos(this.expendedor.getCoca(), Catalogo.COCA.id);
+        depositosprite = new PanelDepositoProductos(this.expendedor.getSprite(), Catalogo.SPRITE.id);
+        depositofanta = new PanelDepositoProductos(this.expendedor.getFanta(), Catalogo.FANTA.id);
+        depositosnickers= new PanelDepositoProductos(this.expendedor.getSnickers(), Catalogo.SNICKERS.id);
+        depositosuper8 = new PanelDepositoProductos(this.expendedor.getSuper8(), Catalogo.SUPER8.id);
+        depositovuelto = new PanelDepositoMonedas(this.expendedor.getMonVu());
 
         this.add(depositococa);
         this.add(depositosprite);
@@ -34,7 +37,10 @@ public class PanelExpendedor extends JPanel {
         this.add(depositosnickers);
         this.add(depositosuper8);
         this.add(depositovuelto);
+
     }
+    /* borrar esto >?
+
     // Tengo que ver como devolver esto
     public Producto getProducto(){
         // se debe heredar de Panel producto
@@ -59,6 +65,8 @@ public class PanelExpendedor extends JPanel {
         }
         repaint();
     }
+
+    */
 
     @Override
     public void paint(Graphics g) {

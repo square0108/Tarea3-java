@@ -2,7 +2,6 @@ package backend;
 
 /**
  * Una clase que Simula el comportamiento de un Expendedor. <code>Comprador</code> Interactua con esta.
- * @see Comprador
  */
 public class Expendedor {
     private Deposito<Producto> coca;
@@ -11,6 +10,8 @@ public class Expendedor {
     private Deposito<Producto> snickers;
     private Deposito<Producto> super8;
     private Deposito<Moneda> monVu;
+    private Deposito<Moneda> monUsadas;
+    private Producto ProductoAlmacenado;
 
     /**
      * Metodo constructor de Expendedor. Genera un stock dentro de los depositos de Productos de Expendedor.
@@ -23,11 +24,10 @@ public class Expendedor {
         this.snickers = new Deposito<>();
         this.super8 = new Deposito<>();
         this.monVu = new Deposito<>();
+        this.monUsadas = new Deposito<>();
+        this.ProductoAlmacenado = null;
 
         /* Se rellenan todos los depositos con la misma cantidad de stock. */
-        /*GLLRM: En caso de que el stock sea menor o igual a cero, simplemente no se añade nada a los
-        * depositos ¿verdad?*/
-        /* SQUARE: Si, en realidad el if (stock>0) no seria necesario porque en caso contrario aunque no estuviese el If, no se ejecutaria el for. */
         if (stock>0){
             for (int i = 1; i <= stock; i++) {
                 coca.add(new CocaCola(1000 + i));
@@ -48,7 +48,8 @@ public class Expendedor {
      * @throws PagoIncorrectoException Ocurre en caso de que se intente realizar un pago con moneda de referencia null.
      * @throws PagoInsuficienteException Ocurre en caso de que el valor de la moneda ingresada sea menor al precio del producto.
      */
-    public Producto comprarProducto(int ID, Moneda moneda) throws NoHayProductoException, PagoIncorrectoException, PagoInsuficienteException {
+
+    public Producto comprarProducto(int ID, Moneda moneda) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         /* Antes de ejecutar cualquier paso, se revisa que la moneda sea valida (no null). */
         if (moneda == null) throw new PagoIncorrectoException();
 
@@ -61,7 +62,7 @@ public class Expendedor {
                 Compra = Catalogo.values()[i];
                 if (moneda.getValor() >= Catalogo.values()[i].precio) { /* Chequea: El pago es suficiente? */
                     Compra = Catalogo.values()[i];
-            }
+                }
                 else {
                     throw new PagoInsuficienteException(this, moneda);
                 }
@@ -70,32 +71,29 @@ public class Expendedor {
         /* Si Compra permanece inicializada como NULL, entonces el ID ingresado no es valido. */
         if (Compra == null) throw new NoHayProductoException(this, moneda);
 
-        /* Primero se crea ProductoComprado.
-        * Si al hacer get() desde un deposito se le asigna null a ProductoComprado, es porque este deposito ha quedado vacio. */
-        Producto ProductoComprado;
         switch (Compra) {
             case COCA:
-                ProductoComprado = coca.get();
-                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
+                ProductoAlmacenado = coca.get();
+                if (ProductoAlmacenado == null) throw new NoHayProductoException(this, moneda);
                 break;
             case SPRITE:
-                ProductoComprado = sprite.get();
-                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
+                ProductoAlmacenado = sprite.get();
+                if (ProductoAlmacenado == null) throw new NoHayProductoException(this, moneda);
                 break;
             case FANTA:
-                ProductoComprado = fanta.get();
-                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
+                ProductoAlmacenado = fanta.get();
+                if (ProductoAlmacenado == null) throw new NoHayProductoException(this, moneda);
                 break;
             case SNICKERS:
-                ProductoComprado = snickers.get();
-                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
+                ProductoAlmacenado = snickers.get();
+                if (ProductoAlmacenado == null) throw new NoHayProductoException(this, moneda);
                 break;
             case SUPER8:
-                ProductoComprado = super8.get();
-                if (ProductoComprado == null) throw new NoHayProductoException(this, moneda);
+                ProductoAlmacenado = super8.get();
+                if (ProductoAlmacenado == null) throw new NoHayProductoException(this, moneda);
                 break;
             default:
-                return null;
+                break;
         }
 
         // GLLRM: Generar monedas segun monto de vuelto y añadirlas al deposito de vuelto
@@ -106,13 +104,24 @@ public class Expendedor {
             monVu.add(moneda100);
         }
 
-        return ProductoComprado;
+        /* Guarda la moneda ingresada permanentemente */
+        monUsadas.add(moneda);
+
+        /*finalmente return*/
+        return ProductoAlmacenado;
     }
 
     /**
      * @return Moneda recogida por usuario desde deposito de vuelto
      */
     public Moneda getVuelto(){return monVu.get();}
+
+    /**
+     * @return Permite ver el valor entero representando el vuelto total a devolver, sin sacar monedas.
+     */
+    public int verVueltoInt(){
+        return monVu.size()*100;
+    }
 
     /*Getters de Depositos*/
     public Deposito<Producto> getCoca() {
