@@ -4,6 +4,7 @@ package backend;
  * Una clase que entrega las funcionalidades de comprador. Interactua con <code>Expendedor</code>.
  * @see Expendedor
  */
+@Deprecated
 public class Comprador {
     private String sabor;
     private int vuelto;
@@ -22,8 +23,8 @@ public class Comprador {
         /*No estoy completamente seguro de que los errores tengas que manejarse de esta forma*/
 
         try{
-            Producto miCompra = expendedor.comprarProducto(producto, moneda);
-            sabor = miCompra.consumir();
+            Producto producto1 = expendedor.comprarProducto(producto, moneda);
+            sabor = producto1.consumir();
 
             // Quitar el vuelto del deposito monVu, hasta que quede vacio
             Moneda monedavuelto = expendedor.getVuelto();
@@ -37,8 +38,8 @@ public class Comprador {
             throw e;
         } catch(NoHayProductoException | PagoInsuficienteException e) {
             /*Sabemos que en caso de que no haya producto o el pago sea insuficiente, entonces solo habra una
-            * moneda en el deposito monVu, por eso cliente recibe la moneda y directamente su vuelto es la
-            * totalidad de lo que pago*/
+             * moneda en el deposito monVu, por eso cliente recibe la moneda y directamente su vuelto es la
+             * totalidad de lo que pago*/
             this.vuelto = expendedor.getVuelto().getValor();
             System.err.println("La Moneda de " + this.toString() + " ha sido rechazada. Valor de la moneda: " + cuantoVuelto());
             throw e;
@@ -56,3 +57,4 @@ public class Comprador {
      */
     public String getSabor(){return this.sabor;}
 }
+
