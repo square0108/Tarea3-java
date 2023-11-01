@@ -7,7 +7,7 @@ public class PanelPrincipal extends JPanel {
     private static PanelExpendedor exp;
     private GridLayout grid;
     public PanelPrincipal () {
-        new Controller(this);
+        Controller.setPanelPrincipal(this);
         grid = new GridLayout(1,2);
         this.setLayout(grid);
 

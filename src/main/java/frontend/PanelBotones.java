@@ -7,6 +7,11 @@ import javax.swing.*;
 public class PanelBotones extends JPanel implements ActionListener {
     private JButton[] botones;
     private PanelComprador panelComprador;
+
+    /**
+     * Botones[] es un array fijo conteniendo los botones para comprar productos. Cada uno tiene un ActionListener que escucha si el boton ha sido presionado.
+     * @param p Referencia al PanelComprador al cual pertenece este JPanel.
+     */
     public PanelBotones(PanelComprador p){
         this.panelComprador = p;
         this.setLayout(new GridLayout(5,1));
@@ -23,6 +28,11 @@ public class PanelBotones extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Notar que el boton no hace nada si hay un producto disponible para retirar.
+     * Si el pago es insuficiente no se compra nada y se devuelve la misma moneda. (Esto es manejado por las excepciones del backend, que depositan la moneda en MonVu).
+     * @param e the event to be processed (en este caso mouseclick, a traves de e.getSource() == botones[i]).
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < botones.length; i++) {
@@ -37,5 +47,4 @@ public class PanelBotones extends JPanel implements ActionListener {
             }
         }
     }
-    public JButton[] getBotones() {return botones;}
 }

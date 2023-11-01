@@ -8,9 +8,12 @@ public class Controller {
     private static PanelPrincipal panelPrincipal;
     private static Producto ProductoARetirar = null;
 
-    public Controller(PanelPrincipal p) {
+    public Controller(PanelPrincipal p) {}
+
+    public static void setPanelPrincipal(PanelPrincipal p) {
         panelPrincipal = p;
     }
+
     public static void CompraExitosa(int p, Moneda m) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
         try {
             ProductoARetirar = expendedor.comprarProducto(p, m);
@@ -25,6 +28,7 @@ public class Controller {
         }
         System.out.println("Producto a retirar: " + ProductoARetirar);
     }
+
     public static Moneda CrearMoneda(int valor) {
         if (valor == 100) return new Moneda100();
         else if (valor == 500) return new Moneda500();
@@ -32,19 +36,24 @@ public class Controller {
         else if (valor == 1500) return new Moneda1500();
         else return null;
     }
+
     public static Producto VerProducto() {return ProductoARetirar;}
+
     public static Producto GetProducto() {
         Producto swap = ProductoARetirar;
         ProductoARetirar = null;
         return swap;
     }
+
     public static int ValorVuelto() {return expendedor.verVueltoInt();}
+
     /* TODO: Este vuelto va a algun lado? */
     public static void GetVueltoAll() {
         while(expendedor.getMonVu().size() > 0) {
             expendedor.getVuelto();
         }
     }
+
     /* TODO: no se me ocurre de momento como repaintear PanelExpendedor desde una compra en PanelComprador, asi que por ahora agrego RepaintAll() */
     public static void RepaintAll() {
         panelPrincipal.repaint();
