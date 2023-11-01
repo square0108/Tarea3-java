@@ -20,8 +20,8 @@ public class PanelProducto extends JPanel {
     private int img_height;
 
     public PanelProducto(){
-        img_height = 100;
-        img_width = 100;
+        img_height = 70;
+        img_width = 70;
         producto = null;
         imagecoca = new ImageIcon("resources/cocacola.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
         imagesprite = new ImageIcon("resources/sprite.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
@@ -29,7 +29,7 @@ public class PanelProducto extends JPanel {
         imagesnickers = new ImageIcon("resources/snickers.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
         imagesuper8 = new ImageIcon("resources/super8.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
     }
-    public Producto getProducto(){
+    /*public Producto getProducto(){
         if(this.producto == null){
             return null;
         } else{
@@ -38,6 +38,10 @@ public class PanelProducto extends JPanel {
             return aux;
         }
     }
+
+    TODO: Creo que este metodo ya no se va a utilizar
+
+    @Deprecated
     public void setProducto(Producto producto){
         if(this.producto == null){
             this.producto = producto;
@@ -46,7 +50,7 @@ public class PanelProducto extends JPanel {
         }
         // cambiar despues¿?
         repaint();
-    }
+    }*/
     private Image setImage(){
         if (this.producto instanceof CocaCola){
             return imagecoca;
@@ -65,10 +69,11 @@ public class PanelProducto extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        this.producto = Controller.VerProducto();
         g.drawRect(0, 0, getWidth(), getHeight());
         if (this.producto !=null){
             g.drawImage(setImage(),20, 20,this);
-            g.drawString(String.valueOf(this.producto.getNumSerie()),20,20);
+            g.drawString(String.valueOf(this.producto.getNumSerie()),40,20);
         }
 
     }
