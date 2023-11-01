@@ -1,11 +1,14 @@
 package frontend;
 import backend.*;
 
+import javax.swing.*;
+
 /* todo: implementar panelcomprador de una forma que no tenga que usar esto? o bien utilizar este Expendedor static para todo */
 
 public class Controller {
     public static Expendedor expendedor = new Expendedor(4);
     private static PanelPrincipal panelPrincipal;
+    // TODO: NO tendria más sentido poner el producto a retirar en Expendedor backend?
     private static Producto ProductoARetirar = null;
 
     public Controller(PanelPrincipal p) {}
@@ -18,12 +21,15 @@ public class Controller {
         try {
             ProductoARetirar = expendedor.comprarProducto(p, m);
         } catch (NoHayProductoException e){
+            JOptionPane.showMessageDialog(null,"ERROR: No hay más productos");
             System.out.println("No hay mas productos");
 
         }catch (PagoIncorrectoException e){
+            JOptionPane.showMessageDialog(null,"ERROR: Seleccione un tipo de moneda");
             System.out.println("No se puede pagar con una moneda null");
 
         }catch (PagoInsuficienteException e){
+            JOptionPane.showMessageDialog(null,"ERROR: No tienes la cantidad de dinero suficiente");
             System.out.println("No tienes la cantidad de dinero suficiente");
         }
         System.out.println("Producto a retirar: " + ProductoARetirar);

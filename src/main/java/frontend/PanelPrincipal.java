@@ -17,4 +17,10 @@ public class PanelPrincipal extends JPanel {
         this.add(exp);
     }
 
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        com.paint(g);
+        exp.paint(g);
+    }
 }

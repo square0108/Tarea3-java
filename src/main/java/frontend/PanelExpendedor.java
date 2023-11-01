@@ -14,13 +14,15 @@ public class PanelExpendedor extends JPanel {
     private PanelDepositoProductos depositofanta;
     private PanelDepositoProductos depositosnickers;
     private PanelDepositoProductos depositosuper8;
+    private JPanel panelinferior;
     private PanelDepositoMonedas depositovuelto;
-    private Producto productocomprado;
+    private PanelProducto productoaretirar;
 
     public PanelExpendedor(Expendedor expendedor){
-        this.setLayout(new GridLayout(7,1));
+        // TODO: El expendedor se debe crear dentro de este constructor
+
+        this.setLayout(new GridLayout(6,1));
         this.expendedor = expendedor;
-        productocomprado = null;
 
         depositococa = new PanelDepositoProductos(this.expendedor.getCoca(), Catalogo.COCA.id);
         depositosprite = new PanelDepositoProductos(this.expendedor.getSprite(), Catalogo.SPRITE.id);
@@ -28,23 +30,27 @@ public class PanelExpendedor extends JPanel {
         depositosnickers= new PanelDepositoProductos(this.expendedor.getSnickers(), Catalogo.SNICKERS.id);
         depositosuper8 = new PanelDepositoProductos(this.expendedor.getSuper8(), Catalogo.SUPER8.id);
         depositovuelto = new PanelDepositoMonedas(this.expendedor.getMonVu());
+        productoaretirar = new PanelProducto();
+        productoaretirar.setPreferredSize(new Dimension(100,100));
 
         this.add(depositococa);
         this.add(depositosprite);
         this.add(depositofanta);
         this.add(depositosnickers);
         this.add(depositosuper8);
-        this.add(depositovuelto);
 
+        panelinferior = new JPanel(new BorderLayout());
+        panelinferior.add(productoaretirar,BorderLayout.WEST);
+        panelinferior.add(depositovuelto,BorderLayout.CENTER);
+
+        this.add(panelinferior);
     }
     /* borrar esto >?
 
     // Tengo que ver como devolver esto
     public Producto getProducto(){
-        Producto producto;
-        producto = this.productocomprado;
-        this.productocomprado = null;
-        return producto;
+        // se debe heredar de Panel producto
+        return null;
     }
     public void comprarProducto(int id,Moneda moneda){
         if (this.productocomprado != null){

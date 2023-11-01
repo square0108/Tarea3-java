@@ -4,7 +4,9 @@ import backend.*;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Clase que representa de forma grafica un Deposito con Monedas dentro.
+ */
 public class PanelDepositoMonedas extends JPanel {
     private Deposito<Moneda> deposito;
     private String img_path;
@@ -14,11 +16,16 @@ public class PanelDepositoMonedas extends JPanel {
     private Image image1500;
     private int img_width;
     private int img_height;
+
+    /**
+     * Metodo constructor de PanelDepositoMonedas.
+     * @param deposito Deposito del tipo "Moneda" el cual se vera reflejado de forma grafica.
+     */
     public PanelDepositoMonedas(Deposito<Moneda> deposito){
 
         // las monedas van a ser cuadradas
-        img_width = 40;
-        img_height = 40;
+        img_width = 50;
+        img_height = 50;
 
         this.deposito = deposito;
         image100 = new ImageIcon("resources/moneda100.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
@@ -26,6 +33,11 @@ public class PanelDepositoMonedas extends JPanel {
         image1000 = new ImageIcon("resources/moneda1000.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
         image1500 = new ImageIcon("resources/moneda1500.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
     }
+    /**
+     * Metodo interno de PanelDepositoMoneda, el cual selecciona que textura poner para cada tipo de moneda.
+     * @param valor Valor de la moneda.
+     * @return textura de la moneda correspondiente: Image
+     */
     private Image getImage(int valor){
         return switch (valor) {
             case 100 -> image100;
@@ -51,7 +63,7 @@ public class PanelDepositoMonedas extends JPanel {
         for (int i=0; i<deposito.size(); i++){
             g.drawImage(getImage(deposito.getItem(i).getValor()),i * getWidth()/deposito.size(), 20,this);
             // TODO: Cual tiene que ser el numero de serie de moneda??
-            g.drawString(deposito.getItem(i).getSerie(), i * getWidth()/deposito.size(),img_height+10);
+            g.drawString(deposito.getItem(i).getSerie(), i * getWidth()/deposito.size(),img_height+30);
         }
     }
 }
