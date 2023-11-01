@@ -18,7 +18,7 @@ public class PanelDepositoProductos extends JPanel {
     private Image image;
     private int img_width;
     private int img_height;
-    private int contador;
+    private int contador; // es utilizado para los numSerie de productos agregados
 
     /**
      * Metodo constructor de PanelDepositoProductos
@@ -28,7 +28,7 @@ public class PanelDepositoProductos extends JPanel {
     public PanelDepositoProductos(Deposito<Producto> deposito, int type){
         // POr ahora iniciemos con un tamaño de la imagen determinado acá
         contador = deposito.size()+1;
-        img_width = 40;
+        img_width = 70;
         img_height = 70;
 
         this.deposito = deposito;
@@ -66,7 +66,6 @@ public class PanelDepositoProductos extends JPanel {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Aquí hay que utilizar expendedor.
                 System.out.println("Test, mouse listener de deposito funciona y agrega item " + id);
                 add();
             }
@@ -95,8 +94,8 @@ public class PanelDepositoProductos extends JPanel {
     }
 
     /**
-     * Metodo usado de forma interna por el Deposito para añadir productos del mismo tipo a este. Notar que es usado en el
-     * MouseListener del Panel
+     * Metodo usado de forma interna por el Depósito para añadir productos del mismo tipo a este.
+     * Notar que es usado en el MouseListener del Panel
      */
     private void add() {
         switch (this.id) {

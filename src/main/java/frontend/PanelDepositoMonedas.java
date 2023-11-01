@@ -17,8 +17,8 @@ public class PanelDepositoMonedas extends JPanel {
     public PanelDepositoMonedas(Deposito<Moneda> deposito){
 
         // las monedas van a ser cuadradas
-        img_width = 40;
-        img_height = 40;
+        img_width = 50;
+        img_height = 50;
 
         this.deposito = deposito;
         image100 = new ImageIcon("resources/moneda100.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
