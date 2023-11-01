@@ -43,7 +43,7 @@ public class PanelRetiros extends JPanel implements ActionListener{
             Controller.RepaintAll();
             System.out.println("glu glu, " + SADMAN.consumir());
         }
-        /* TODO: Supongo que no se hace nada con este vuelto una vez que esta fuera del expendedor?*/
+        /* TODO: pintar monedas que guarda Comprador como vuelto */
         else if (e.getSource() == buttons[1] && Controller.VerVuelto(0) != null) {
             Controller.GetVueltoAll();
             Controller.RepaintAll();

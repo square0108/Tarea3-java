@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class PanelComprador extends JPanel {
     private PanelBotones panelBotones;
-    private PanelCrearMonedas panelCrearMonedas;
+    private PanelSelectMoneda panelSelectMoneda;
     private PanelRetiros panelRetiros;
     private PanelMonedasComprador panelMonedasComprador;
     private int ValMonedaSelect;
@@ -12,7 +12,7 @@ public class PanelComprador extends JPanel {
         ValMonedaSelect = 0;
         this.panelMonedasComprador = new PanelMonedasComprador();
         this.panelBotones = new PanelBotones(this);
-        this.panelCrearMonedas = new PanelCrearMonedas(this);
+        this.panelSelectMoneda = new PanelSelectMoneda(this);
         this.panelRetiros = new PanelRetiros(this);
 
         /* estos dos paneles no hacen nada, son solo para layout, por ende no tienen su propio archivo */
@@ -28,7 +28,7 @@ public class PanelComprador extends JPanel {
 
         Upper.add(panelRetiros);
         Upper.add(panelBotones);
-        Lower.add(panelCrearMonedas, BorderLayout.NORTH);
+        Lower.add(panelSelectMoneda, BorderLayout.NORTH);
         Lower.add(panelMonedasComprador, BorderLayout.CENTER);
     }
 

@@ -4,11 +4,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class PanelCrearMonedas extends JPanel implements ActionListener {
+public class PanelSelectMoneda extends JPanel implements ActionListener {
     private ButtonGroup bgroup;
     private JRadioButton[] montos;
     private PanelComprador panelComprador;
-    public PanelCrearMonedas(PanelComprador p) {
+    public PanelSelectMoneda(PanelComprador p) {
         this.montos = new JRadioButton[4];
         this.bgroup = new ButtonGroup();
         this.panelComprador = p;
