@@ -11,7 +11,7 @@ public class PanelMonedasComprador extends JPanel {
     private Image image1500;
     private int img_width;
     private int img_height;
-    private int LastVueltoSize = 0;
+    private int MonedasEnPosesion = 0;
 
     public PanelMonedasComprador() {
         img_width = 50;
@@ -35,9 +35,12 @@ public class PanelMonedasComprador extends JPanel {
             }
         };
     }
+    /* TODO: pintar monedas que guarda Comprador como vuelto */
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        g.setColor(Color.BLACK);
+        g.drawRect(0, 0, getWidth(), getHeight());
     }
 }

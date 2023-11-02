@@ -1,5 +1,9 @@
 package frontend;
-import backend.*;
+import backend.Catalogo;
+import backend.NoHayProductoException;
+import backend.PagoIncorrectoException;
+import backend.PagoInsuficienteException;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +20,11 @@ public class PanelBotones extends JPanel implements ActionListener {
         this.panelComprador = p;
         this.setLayout(new GridLayout(5,1));
         this.botones = new JButton[5];
-        botones[0] = new JButton("Coca Cola");
-        botones[1] = new JButton("Sprite");
-        botones[2] = new JButton("Fanta");
-        botones[3] = new JButton("Snickers");
-        botones[4] = new JButton("Super 8");
+        botones[0] = new JButton("Coca Cola " + "($" + Catalogo.COCA.precio + ")");
+        botones[1] = new JButton("Sprite " + "($" + Catalogo.SPRITE.precio + ")");
+        botones[2] = new JButton("Fanta " + "($" + Catalogo.FANTA.precio + ")");
+        botones[3] = new JButton("Snickers " + "($" + Catalogo.SNICKERS.precio + ")");
+        botones[4] = new JButton("Super 8 " + "($" + Catalogo.SUPER8.precio + ")");
 
         for (int i = 0; i < botones.length; i++) {
             botones[i].addActionListener(this);

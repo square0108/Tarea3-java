@@ -54,6 +54,7 @@ public class PanelDepositoMonedas extends JPanel {
     public void setXY(){
         repaint();
     }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);

@@ -46,14 +46,17 @@ public class Controller {
     public static Producto RetirarProducto() {return expendedor.retirarProductoAlmacenado();}
 
     public static Moneda VerVuelto(int index) {
-        return expendedor.verVuelto(index);
+        if (index >= expendedor.getMonVu().size()) return null;
+        else return expendedor.getMonVu().getItem(index);
     }
 
     /* TODO: Este vuelto va a algun lado? */
-    public static void GetVueltoAll() {
-        while(expendedor.getMonVu().size() > 0) {
-            expendedor.getVuelto();
+    public static Moneda[] RetirarTodoVuelto() {
+        Moneda[] vuelto = new Moneda[expendedor.getMonVu().size()];
+        for (int i = 0; i < vuelto.length; i++) {
+            vuelto[i] = expendedor.getVuelto();
         }
+        return vuelto;
     }
 
     public static Moneda QueMonedaUsaste() {
