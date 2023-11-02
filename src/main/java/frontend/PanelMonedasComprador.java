@@ -38,9 +38,12 @@ public class PanelMonedasComprador extends JPanel {
     /* TODO: pintar monedas que guarda Comprador como vuelto */
 
     @Override
-    public void paint(Graphics g) {
-        super.paint(g);
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
         g.setColor(Color.BLACK);
         g.drawRect(0, 0, getWidth(), getHeight());
+
+        validate();
     }
 }

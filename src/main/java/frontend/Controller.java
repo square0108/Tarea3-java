@@ -20,7 +20,7 @@ public class Controller {
             expendedor.comprarProducto(p, m);
         } catch (NoHayProductoException e){
             JOptionPane.showMessageDialog(null,"ERROR: No hay más productos");
-            System.out.println("No hay mas productos");
+            System.out.println("No hay mas productos de este tipo");
 
         }catch (PagoIncorrectoException e){
             JOptionPane.showMessageDialog(null,"ERROR: Seleccione un tipo de moneda");

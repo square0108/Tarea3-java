@@ -65,13 +65,16 @@ public class PanelRetiros extends JPanel implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        /* source: Retirar Producto */
         if (e.getSource() == buttons[0] && Controller.VerProducto() != null) {
             Producto SADMAN = Controller.RetirarProducto();
             System.out.println("glu glu, " + SADMAN.consumir());
 
             Controller.RepaintAll();
         }
+        /* source: Retirar Vuelto*/
         else if (e.getSource() == buttons[1] && Controller.VerVuelto(0) != null) {
+            /* Se guardan las Monedas en un arreglo de size fijo. */
             this.panelComprador.setUltimoVueltoRecibido(Controller.RetirarTodoVuelto());
 
             System.out.print("Retiraste vuelto, Total: ");
@@ -79,7 +82,7 @@ public class PanelRetiros extends JPanel implements ActionListener{
             for (int i = 0; i < panelComprador.getUltimoVueltoRecibido().length; i++) {
                 sum += panelComprador.getUltimoVueltoRecibido()[i].getValor();
             }
-            System.out.println(sum);
+            System.out.println("$" + sum);
 
             Controller.RepaintAll();
         }

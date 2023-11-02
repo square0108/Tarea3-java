@@ -46,7 +46,7 @@ public class PanelBotones extends JPanel implements ActionListener {
         //--------------
         for (int i = 0; i < botones.length; i++) {
             if (e.getSource() == botones[i] && Controller.VerProducto() == null) {
-                System.out.println("yay");
+                System.out.println("Intentando compra...");
                 try {
                     Controller.ComprarProducto(i, Controller.CrearMoneda(panelComprador.getValMonedaSelect()));
                     Controller.RepaintAll();
