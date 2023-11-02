@@ -51,7 +51,7 @@ public class PanelMonedasComprador extends JPanel {
         g.drawRect(0, 0, getWidth(), getHeight());
         for (int i=0; i<panelComprador.getMonedasComprador().size(); i++){
             g.drawImage(getImage(panelComprador.getMonedasComprador().getItem(i).getValor()),i * getWidth()/panelComprador.getMonedasComprador().size(), 20,this);
-            g.drawString(panelComprador.getMonedasComprador().getItem(i).getSerie(), i * getWidth()/panelComprador.getMonedasComprador().size(),img_height+30);
+            g.drawString(Controller.TruncarSerie(panelComprador.getMonedasComprador().getItem(i).getSerie()), i * getWidth()/panelComprador.getMonedasComprador().size(),img_height+30);
         }
     }
 }

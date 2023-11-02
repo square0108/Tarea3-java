@@ -63,6 +63,11 @@ public class Controller {
         return expendedor.getMonUsadas().getItem(0);
     }
 
+    public static String TruncarSerie(String numSerie) {
+        int arroba = numSerie.lastIndexOf('@');
+        return numSerie.substring(arroba + 1);
+    }
+
     /* TODO: no se me ocurre de momento como repaintear PanelExpendedor desde una compra en PanelComprador, asi que por ahora agrego RepaintAll() */
     public static void RepaintAll() {
         panelPrincipal.repaint();
