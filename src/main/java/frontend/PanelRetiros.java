@@ -1,4 +1,5 @@
 package frontend;
+import backend.Moneda;
 import backend.Producto;
 
 import java.awt.*;
@@ -75,14 +76,14 @@ public class PanelRetiros extends JPanel implements ActionListener{
         /* source: Retirar Vuelto*/
         else if (e.getSource() == buttons[1] && Controller.VerVuelto(0) != null) {
             /* Se guardan las Monedas en un arreglo de size fijo. */
-            this.panelComprador.setUltimoVueltoRecibido(Controller.RetirarTodoVuelto());
+            Moneda[] vuelto = Controller.RetirarTodoVuelto();
 
-            System.out.print("Retiraste vuelto, Total: ");
             int sum = 0;
-            for (int i = 0; i < panelComprador.getUltimoVueltoRecibido().length; i++) {
-                sum += panelComprador.getUltimoVueltoRecibido()[i].getValor();
+            for (int i = 0; i < vuelto.length; i++) {
+                sum += vuelto[i].getValor();
+                this.panelComprador.getMonedasComprador().add(vuelto[i]);
             }
-            System.out.println("$" + sum);
+            System.out.println("Retiraste vuelto, Total: $" + sum);
 
             Controller.RepaintAll();
         }

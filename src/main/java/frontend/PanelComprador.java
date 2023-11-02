@@ -1,4 +1,5 @@
 package frontend;
+import backend.Deposito;
 import backend.Moneda;
 
 import java.awt.*;
@@ -10,7 +11,7 @@ public class PanelComprador extends JPanel {
     private PanelRetiros panelRetiros;
     private PanelMonedasComprador panelMonedasComprador;
     private int ValMonedaSelect;
-    private Moneda[] UltimoVueltoRecibido;
+    private Deposito<Moneda> MonedasComprador = new Deposito<>();
 
     /**
      * Posee como propiedades privadas: PanelBotones, PanelSelectMoneda, PanelRetiros, PanelMonedasComprador, estos son sus "subpaneles".
@@ -18,8 +19,9 @@ public class PanelComprador extends JPanel {
      * PanelComprador posee las propiedades privadas int ValMonedaSelect, Moneda[] UltimoVueltoRecibido. La primera es para conectar PanelSelectMoneda con PanelBotones, la segunda es para conectar PanelRetiros con PanelMonedasComprador.
      */
     public PanelComprador() {
-        ValMonedaSelect = 0;
-        this.panelMonedasComprador = new PanelMonedasComprador();
+        ValMonedaSelect = 0; /* es el valor de la moneda seleccionada por el JRadioButton presente en PanelSelectMoneda, aunque este panel no crea monedas hasta que una compra si se haya intentado. */
+
+        this.panelMonedasComprador = new PanelMonedasComprador(this);
         this.panelBotones = new PanelBotones(this);
         this.panelSelectMoneda = new PanelSelectMoneda(this);
         this.panelRetiros = new PanelRetiros(this);
@@ -51,9 +53,7 @@ public class PanelComprador extends JPanel {
         ValMonedaSelect = valMonedaSelect;
     }
 
-    public Moneda[] getUltimoVueltoRecibido() {return UltimoVueltoRecibido;}
-
-    public void setUltimoVueltoRecibido(Moneda[] arrayMonedas) {
-        this.UltimoVueltoRecibido = arrayMonedas;
+    public Deposito<Moneda> getMonedasComprador() {
+        return MonedasComprador;
     }
- }
+}

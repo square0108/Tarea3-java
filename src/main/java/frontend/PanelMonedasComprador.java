@@ -1,6 +1,11 @@
 package frontend;
+import backend.Deposito;
+import backend.Moneda;
+
+import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /* Esta parte se la he copiado casi toda a Guillermo. Grande Guillermo. */
 
@@ -11,9 +16,11 @@ public class PanelMonedasComprador extends JPanel {
     private Image image1500;
     private int img_width;
     private int img_height;
-    private int MonedasEnPosesion = 0;
+    private PanelComprador panelComprador;
 
-    public PanelMonedasComprador() {
+    public PanelMonedasComprador(PanelComprador p) {
+        this.panelComprador = p;
+        this.setLayout(new GridLayout());
         img_width = 50;
         img_height = 50;
 
@@ -40,10 +47,11 @@ public class PanelMonedasComprador extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         g.setColor(Color.BLACK);
         g.drawRect(0, 0, getWidth(), getHeight());
-
-        validate();
+        for (int i=0; i<panelComprador.getMonedasComprador().size(); i++){
+            g.drawImage(getImage(panelComprador.getMonedasComprador().getItem(i).getValor()),i * getWidth()/panelComprador.getMonedasComprador().size(), 20,this);
+            g.drawString(panelComprador.getMonedasComprador().getItem(i).getSerie(), i * getWidth()/panelComprador.getMonedasComprador().size(),img_height+30);
+        }
     }
 }
