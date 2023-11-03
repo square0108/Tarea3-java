@@ -11,7 +11,7 @@ public class PanelComprador extends JPanel {
     private PanelRetiros panelRetiros;
     private PanelMonedasComprador panelMonedasComprador;
     private int ValMonedaSelect;
-    private Deposito<Moneda> MonedasComprador = new Deposito<>();
+    private final Deposito<Moneda> MonedasComprador = new Deposito<>();
 
     /**
      * Posee como propiedades privadas: PanelBotones, PanelSelectMoneda, PanelRetiros, PanelMonedasComprador, estos son sus "subpaneles".
@@ -21,6 +21,9 @@ public class PanelComprador extends JPanel {
     public PanelComprador() {
         ValMonedaSelect = 0; /* es el valor de la moneda seleccionada por el JRadioButton presente en PanelSelectMoneda, aunque este panel no crea monedas hasta que una compra si se haya intentado. */
 
+        /* los subpaneles poseen referencias a PanelComprador como parte de su implementacion: */
+        /* panelSelectMoneda cambia el entero ValMonedaSelect y esta propiedad es usada por panelBotones al comprar */
+        /* panelRetiros, si es que ya se ha completado una compra, puede retirar las monedas y almacenarlas en MonedasComprador, un Deposito<Moneda> que luego es usado por panelMonedasComprador */
         this.panelMonedasComprador = new PanelMonedasComprador(this);
         this.panelBotones = new PanelBotones(this);
         this.panelSelectMoneda = new PanelSelectMoneda(this);
