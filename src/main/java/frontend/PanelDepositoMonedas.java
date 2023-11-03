@@ -22,8 +22,6 @@ public class PanelDepositoMonedas extends JPanel {
      * @param deposito Deposito del tipo "Moneda" el cual se vera reflejado de forma grafica.
      */
     public PanelDepositoMonedas(Deposito<Moneda> deposito){
-
-        // las monedas van a ser cuadradas
         img_width = 50;
         img_height = 50;
 
@@ -50,7 +48,10 @@ public class PanelDepositoMonedas extends JPanel {
             }
         };
     }
-    // Hace un update de la vista, nose porque tiene que ser setXY ¿?
+    /**
+     * Hace repaint de la vista del deposito
+     * TODO: No entiendo muy bien que quiere el profe que hagamos con este metodo.
+     */
     public void setXY(){
         repaint();
     }
