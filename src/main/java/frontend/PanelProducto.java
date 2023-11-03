@@ -6,8 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Clase usada para representar de forma grafica el compartimento por donde sale un producto en expendedor
- *TODO: CAMBIAR DESCRIPCIÓN XD
+ * Clase usada para representar de forma grafica el compartimento por donde sale un producto en expendedor.
  */
 public class PanelProducto extends JPanel {
     private Producto producto;
@@ -29,28 +28,11 @@ public class PanelProducto extends JPanel {
         imagesnickers = new ImageIcon("resources/snickers.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
         imagesuper8 = new ImageIcon("resources/super8.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
     }
-    /*public Producto getProducto(){
-        if(this.producto == null){
-            return null;
-        } else{
-            Producto aux = this.producto;
-            this.producto = null;
-            return aux;
-        }
-    }
 
-    TODO: Creo que este metodo ya no se va a utilizar
-
-    @Deprecated
-    public void setProducto(Producto producto){
-        if(this.producto == null){
-            this.producto = producto;
-        }else{
-            System.out.println("Lanzar error sobre que esta lleno");
-        }
-        // cambiar despues¿?
-        repaint();
-    }*/
+    /**
+     * Metodo usado de forma interna por PanelProducto, este elige que textura utilizar según que tipo de producto es.
+     * @return Textura que utiliza el producto: Image.
+     */
     private Image setImage(){
         if (this.producto instanceof CocaCola){
             return imagecoca;
