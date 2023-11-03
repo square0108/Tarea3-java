@@ -3,8 +3,6 @@ import backend.*;
 
 import javax.swing.*;
 
-/* todo: implementar panelcomprador de una forma que no tenga que usar esto? o bien utilizar este Expendedor static para todo */
-
 public class Controller {
     public static Expendedor expendedor = new Expendedor(4);
     private static PanelPrincipal panelPrincipal;
@@ -50,7 +48,6 @@ public class Controller {
         else return expendedor.getMonVu().getItem(index);
     }
 
-    /* TODO: Este vuelto va a algun lado? */
     public static Moneda[] RetirarTodoVuelto() {
         Moneda[] vuelto = new Moneda[expendedor.getMonVu().size()];
         for (int i = 0; i < vuelto.length; i++) {
@@ -59,16 +56,11 @@ public class Controller {
         return vuelto;
     }
 
-    public static Moneda QueMonedaUsaste() {
-        return expendedor.getMonUsadas().getItem(0);
-    }
-
     public static String TruncarSerie(String numSerie) {
         int arroba = numSerie.lastIndexOf('@');
         return numSerie.substring(arroba + 1);
     }
-
-    /* TODO: no se me ocurre de momento como repaintear PanelExpendedor desde una compra en PanelComprador, asi que por ahora agrego RepaintAll() */
+    
     public static void RepaintAll() {
         panelPrincipal.repaint();
     }
