@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase que Representa de forma grafica el funcionamiento de un expendedor.
+ */
 public class PanelExpendedor extends JPanel {
     private Expendedor expendedor;
     private PanelDepositoProductos depositococa;
@@ -18,8 +21,11 @@ public class PanelExpendedor extends JPanel {
     private PanelDepositoMonedas depositovuelto;
     private PanelProducto productoaretirar;
 
+    /**
+     * Método constructor de expendedor. Este inicializa la configuración de la vista del panel.
+     * @param expendedor Expendedor a ser Reflejado de forma grafica.
+     */
     public PanelExpendedor(Expendedor expendedor){
-        // TODO: El expendedor se debe crear dentro de este constructor
 
         this.setLayout(new GridLayout(6,1));
         this.expendedor = expendedor;
@@ -30,6 +36,7 @@ public class PanelExpendedor extends JPanel {
         depositosnickers= new PanelDepositoProductos(this.expendedor.getSnickers(), Catalogo.SNICKERS.id);
         depositosuper8 = new PanelDepositoProductos(this.expendedor.getSuper8(), Catalogo.SUPER8.id);
         depositovuelto = new PanelDepositoMonedas(this.expendedor.getMonVu());
+
         productoaretirar = new PanelProducto();
         productoaretirar.setPreferredSize(new Dimension(100,100));
 
@@ -45,35 +52,6 @@ public class PanelExpendedor extends JPanel {
 
         this.add(panelinferior);
     }
-    /* borrar esto >?
-
-    // Tengo que ver como devolver esto
-    public Producto getProducto(){
-        // se debe heredar de Panel producto
-        return null;
-    }
-    public void comprarProducto(int id,Moneda moneda){
-        if (this.productocomprado != null){
-            System.out.println("Ya se compro un producto");
-        }
-        else{
-            try {
-                this.productocomprado = this.expendedor.comprarProducto(id,moneda);
-            }catch (NoHayProductoException e){
-                System.out.println("No hay mas productos");
-
-            }catch (PagoIncorrectoException e){
-                System.out.println("No se puede pagar con una moneda null");
-
-            }catch (PagoInsuficienteException e){
-                System.out.println("No tienes la cantidad de dinero suficiente");
-            }
-        }
-        repaint();
-    }
-
-    */
-
     @Override
     public void paint(Graphics g) {
         super.paint(g);
