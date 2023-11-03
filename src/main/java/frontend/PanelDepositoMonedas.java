@@ -54,6 +54,7 @@ public class PanelDepositoMonedas extends JPanel {
     public void setXY(){
         repaint();
     }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -63,7 +64,7 @@ public class PanelDepositoMonedas extends JPanel {
         for (int i=0; i<deposito.size(); i++){
             g.drawImage(getImage(deposito.getItem(i).getValor()),i * getWidth()/deposito.size(), 20,this);
             // TODO: Cual tiene que ser el numero de serie de moneda??
-            g.drawString(deposito.getItem(i).getSerie(), i * getWidth()/deposito.size(),img_height+30);
+            g.drawString(Controller.TruncarSerie(deposito.getItem(i).getSerie()), i * getWidth()/deposito.size(),img_height+30);
         }
     }
 }

@@ -116,14 +116,6 @@ public class Expendedor {
      */
     public Moneda getVuelto(){return monVu.get();}
 
-    /**
-     * @return Permite ver alguna de las monedas contenidas en el deposito de vuelto.
-     */
-    public Moneda verVuelto(int index){
-        if (monVu.size() == 0) return null;
-        else return monVu.getItem(index);
-    }
-
     public Producto retirarProductoAlmacenado() {
         Producto swap = this.ProductoAlmacenado;
         this.ProductoAlmacenado = null;

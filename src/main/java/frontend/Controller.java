@@ -20,7 +20,7 @@ public class Controller {
             expendedor.comprarProducto(p, m);
         } catch (NoHayProductoException e){
             JOptionPane.showMessageDialog(null,"ERROR: No hay más productos");
-            System.out.println("No hay mas productos");
+            System.out.println("No hay mas productos de este tipo");
 
         }catch (PagoIncorrectoException e){
             JOptionPane.showMessageDialog(null,"ERROR: Seleccione un tipo de moneda");
@@ -46,18 +46,26 @@ public class Controller {
     public static Producto RetirarProducto() {return expendedor.retirarProductoAlmacenado();}
 
     public static Moneda VerVuelto(int index) {
-        return expendedor.verVuelto(index);
+        if (index >= expendedor.getMonVu().size()) return null;
+        else return expendedor.getMonVu().getItem(index);
     }
 
     /* TODO: Este vuelto va a algun lado? */
-    public static void GetVueltoAll() {
-        while(expendedor.getMonVu().size() > 0) {
-            expendedor.getVuelto();
+    public static Moneda[] RetirarTodoVuelto() {
+        Moneda[] vuelto = new Moneda[expendedor.getMonVu().size()];
+        for (int i = 0; i < vuelto.length; i++) {
+            vuelto[i] = expendedor.getVuelto();
         }
+        return vuelto;
     }
 
     public static Moneda QueMonedaUsaste() {
         return expendedor.getMonUsadas().getItem(0);
+    }
+
+    public static String TruncarSerie(String numSerie) {
+        int arroba = numSerie.lastIndexOf('@');
+        return numSerie.substring(arroba + 1);
     }
 
     /* TODO: no se me ocurre de momento como repaintear PanelExpendedor desde una compra en PanelComprador, asi que por ahora agrego RepaintAll() */
