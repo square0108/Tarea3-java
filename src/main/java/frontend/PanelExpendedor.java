@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Simula los contenidos de la máquina expendedora mediante una interfaz.
+ */
 public class PanelExpendedor extends JPanel {
     private Expendedor expendedor;
     private PanelDepositoProductos depositococa;
@@ -18,11 +21,12 @@ public class PanelExpendedor extends JPanel {
     private PanelDepositoMonedas depositovuelto;
     private PanelProducto productoaretirar;
 
-    public PanelExpendedor(Expendedor expendedor){
+    public PanelExpendedor(){
         // TODO: El expendedor se debe crear dentro de este constructor
 
         this.setLayout(new GridLayout(6,1));
-        this.expendedor = expendedor;
+        this.expendedor = new Expendedor(4);
+        Controller.setExpendedor(expendedor);
 
         depositococa = new PanelDepositoProductos(this.expendedor.getCoca(), Catalogo.COCA.id);
         depositosprite = new PanelDepositoProductos(this.expendedor.getSprite(), Catalogo.SPRITE.id);

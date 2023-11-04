@@ -26,13 +26,12 @@ public class PanelDepositoProductos extends JPanel {
      * @param type  ID del tipo de productos dentro del deposito.
      */
     public PanelDepositoProductos(Deposito<Producto> deposito, int type){
-        // POr ahora iniciemos con un tamaño de la imagen determinado acá
+        // Por ahora iniciemos con un tamaño de la imagen determinado acá
         contador = deposito.size()+1;
         img_width = 70;
         img_height = 70;
 
         this.deposito = deposito;
-        /*TODO: Cambiar los numeros por emun de Catalogo*/
         id = type;
 
         // Esto es para mas que nada configurar la dirección de la imagen
@@ -94,7 +93,7 @@ public class PanelDepositoProductos extends JPanel {
 
     /**
      * Metodo usado de forma interna por el Depósito para añadir productos del mismo tipo a este.
-     * Notar que es usado en el MouseListener del Panel
+     * Notar que es usado en el MouseListener del Panel. El click del mouse rellena depositos individuales agregando 1 Producto por click.
      */
     private void add() {
         switch (this.id) {
@@ -119,6 +118,11 @@ public class PanelDepositoProductos extends JPanel {
         contador++;
         repaint();
     }
+
+    /**
+     * Override que pinta sobre este panel, a todos los productos presentes en los Deposito<Producto>s de Expendedor.
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);

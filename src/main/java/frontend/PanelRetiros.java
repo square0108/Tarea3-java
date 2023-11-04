@@ -62,6 +62,7 @@ public class PanelRetiros extends JPanel implements ActionListener{
     /**
      * Boton RetirarProducto: Si es que hay un producto presente (verProducto() != null), este se retira mediante Controller y se consume inmediatamente.
      * Boton RetirarVuelto: Si es que hay vuelto, checkeando el primer indice del array MonVu, (verVuelto(0) != null), se retira el vuelto completo y se almacena en un array de size fijo.
+     * <p> <n></n>
      * Dicho array de size fijo se utiliza para dibujar las monedas de Comprador, y cambia con cada retiro de vuelto que se hace.
      * @param e the event to be processed (click en boton Retirar Producto, o boton Retirar Vuelto)
      */
