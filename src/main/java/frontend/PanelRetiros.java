@@ -6,14 +6,15 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
+/**
+ * Panel que posee los botones para retirar producto y vuelto de Expendedor.
+ */
 public class PanelRetiros extends JPanel implements ActionListener{
+    /* contiene los botones Retirar Producto, Retirar Vuelto */
     private JButton[] buttons;
+    /* referencia al PanelComprador al cual pertenece esta instancia */
     private final PanelComprador panelComprador;
 
-    /**
-     * JPanel que posee dos botones: Retirar Producto, y Retirar Vuelto. Estos solo son utilizables una vez que se ha realizado una compra exitosa, o bien se intento comprar algo con dinero insuficiente.
-     * @param p PanelComprador al que pertenece este panel
-     */
     public PanelRetiros(PanelComprador p) {
         this.setLayout(new GridLayout(2,1));
 
