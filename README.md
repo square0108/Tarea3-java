@@ -2,5 +2,3 @@
 Integrantes:
 - Guillermo Oliva
 - Martin Llanos
-
-Uwudec
