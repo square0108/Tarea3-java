@@ -32,7 +32,6 @@ public class PanelDepositoProductos extends JPanel {
         img_height = 70;
 
         this.deposito = deposito;
-        /*TODO: Cambiar los numeros por emun de Catalogo*/
         id = type;
 
         // Esto es para mas que nada configurar la dirección de la imagen

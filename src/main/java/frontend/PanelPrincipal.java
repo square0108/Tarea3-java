@@ -15,7 +15,7 @@ public class PanelPrincipal extends JPanel {
         this.setLayout(new GridLayout(1, 2));
 
         com = new PanelComprador();
-        exp = new PanelExpendedor(Controller.expendedor);
+        exp = new PanelExpendedor();
         this.add(com);
         this.add(exp);
     }

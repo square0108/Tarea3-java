@@ -8,11 +8,17 @@ import javax.swing.*;
  */
 public class Controller {
     /* Expendedor "interno" desde donde todos los paneles obtienen informacion. */
-    public static Expendedor expendedor = new Expendedor(4);
+    private static Expendedor expendedor;
     /* PanelPrincipal asociado a Controller. */
     private static PanelPrincipal panelPrincipal;
 
     public Controller() {}
+
+    /**
+     * Actualiza el Expendedor que se esta controlando.
+     * @param e Expendedor que utiliza Controller
+     */
+    public static void setExpendedor(Expendedor e) {expendedor = e;}
 
     /**
      * Actualiza la instancia de PanelPrincipal que se esta controlando.

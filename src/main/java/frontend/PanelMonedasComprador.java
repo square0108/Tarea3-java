@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/* Esta parte se la he copiado casi toda a Guillermo. Grande Guillermo. */
+/* Esta implementacion se la he copiado casi toda a Guillermo desde su clase PanelDepositoMonedas. Grande Guillermo. */
 
 public class PanelMonedasComprador extends JPanel {
     private Image image100;
@@ -42,13 +42,15 @@ public class PanelMonedasComprador extends JPanel {
             }
         };
     }
-    /* TODO: pintar monedas que guarda Comprador como vuelto */
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.BLACK);
         g.drawRect(0, 0, getWidth(), getHeight());
+
+        /* Se aloja espacio para cada moneda dividiendo el width del espacio, por el size() del Deposito MonedasComprador. */
+        /* MonedasComprador.size() crece dinamicamente mientras mas vuelto acumula el usuario. Idealmente hubiese ocupado varias filas de espacio para esto, pero no pude hacerlo... */
         for (int i=0; i<panelComprador.getMonedasComprador().size(); i++){
             g.drawImage(getImage(panelComprador.getMonedasComprador().getItem(i).getValor()),i * getWidth()/panelComprador.getMonedasComprador().size(), 20,this);
             g.drawString(Controller.TruncarSerie(panelComprador.getMonedasComprador().getItem(i).getSerie()), i * getWidth()/panelComprador.getMonedasComprador().size(),img_height+30);
