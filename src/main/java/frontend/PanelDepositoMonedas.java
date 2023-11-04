@@ -55,6 +55,10 @@ public class PanelDepositoMonedas extends JPanel {
         repaint();
     }
 
+    /**
+     *
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
