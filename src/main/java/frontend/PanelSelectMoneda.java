@@ -4,16 +4,23 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * Panel cuya principal funcion es modificar la propiedad ValMonedaSelect de PanelComprador, y asi comunicar que valor de moneda se va a utilizar.
+ */
 public class PanelSelectMoneda extends JPanel implements ActionListener {
-    private ButtonGroup bgroup;
-    private JRadioButton[] montos;
-    private PanelComprador panelComprador;
+    /* Se utiliza ButtonGroup, de esta forma las elecciones de moneda son exclusivas entre sí */
+    private final ButtonGroup bgroup;
+    /* Contiene los valores de moneda elegibles */
+    private final JRadioButton[] montos;
+    /* Referencia a PanelComprador al cual pertenece esta instancia */
+    private final PanelComprador panelComprador;
     public PanelSelectMoneda(PanelComprador p) {
         this.montos = new JRadioButton[4];
         this.bgroup = new ButtonGroup();
         this.panelComprador = p;
         this.setLayout(new FlowLayout());
 
+        /* Creacion de los JRadioButton con los montos de moneda */
         JRadioButton Mon100 = new JRadioButton("$100");
         Mon100.addActionListener(this);
         montos[0] = Mon100;
@@ -27,11 +34,13 @@ public class PanelSelectMoneda extends JPanel implements ActionListener {
         Mon1500.addActionListener(this);
         montos[3] = Mon1500;
 
+        /* Se agregan individualmente al ButtonGroup */
         bgroup.add(Mon100);
         bgroup.add(Mon500);
         bgroup.add(Mon1000);
         bgroup.add(Mon1500);
 
+        /* Texto de instruccion para el usuario */
         JLabel instruccioncompra = new JLabel("Seleccione un monto: ");
 
         this.add(instruccioncompra);
@@ -40,6 +49,12 @@ public class PanelSelectMoneda extends JPanel implements ActionListener {
         this.add(Mon1000);
         this.add(Mon1500);
     }
+
+    /**
+     * Modifica PanelComprador.ValMonedaSelect, asignandole un nuevo monto segun el JRadioButton seleccionado
+     * @param e the event to be processed (click del mouse en cada JRadioButton)
+     */
+    @Override
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < bgroup.getButtonCount(); i++) {
             if (e.getSource() == montos[i]) {

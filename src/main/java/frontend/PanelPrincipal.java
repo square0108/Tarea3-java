@@ -2,14 +2,17 @@ package frontend;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Panel donde se contienen todos los demas de la aplicacion.
+ */
 public class PanelPrincipal extends JPanel {
     private static PanelComprador com;
     private static PanelExpendedor exp;
-    private GridLayout grid;
+
     public PanelPrincipal () {
+        /* Se agrega esta instancia como el PanelPrincipal asociado a Controller, esto es necesario para utilizar Controller.RepaintAll() */
         Controller.setPanelPrincipal(this);
-        grid = new GridLayout(1,2);
-        this.setLayout(grid);
+        this.setLayout(new GridLayout(1, 2));
 
         com = new PanelComprador();
         exp = new PanelExpendedor(Controller.expendedor);

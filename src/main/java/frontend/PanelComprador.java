@@ -5,22 +5,26 @@ import backend.Moneda;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Posee como propiedades privadas: PanelBotones, PanelSelectMoneda, PanelRetiros, PanelMonedasComprador, estos son sus "subpaneles".
+ * Todos los subpaneles con archivo propio poseen una referencia a PanelComprador, al cual pertenecen.
+ */
 public class PanelComprador extends JPanel {
     private PanelBotones panelBotones;
     private PanelSelectMoneda panelSelectMoneda;
     private PanelRetiros panelRetiros;
     private PanelMonedasComprador panelMonedasComprador;
+    /* Este es el valor en $ de la moneda seleccionado por PanelSelectMoneda */
     private int ValMonedaSelect;
-    private Deposito<Moneda> MonedasComprador = new Deposito<>();
+    /* Almacena todas las monedas que ha acumulado "Comprador" retirando vueltos */
+    private final Deposito<Moneda> MonedasComprador = new Deposito<>();
 
-    /**
-     * Posee como propiedades privadas: PanelBotones, PanelSelectMoneda, PanelRetiros, PanelMonedasComprador, estos son sus "subpaneles".
-     * Todos los subpaneles con archivo propio poseen una referencia a PanelComprador, al cual pertenecen.
-     * PanelComprador posee las propiedades privadas int ValMonedaSelect, Moneda[] UltimoVueltoRecibido. La primera es para conectar PanelSelectMoneda con PanelBotones, la segunda es para conectar PanelRetiros con PanelMonedasComprador.
-     */
     public PanelComprador() {
-        ValMonedaSelect = 0; /* es el valor de la moneda seleccionada por el JRadioButton presente en PanelSelectMoneda, aunque este panel no crea monedas hasta que una compra si se haya intentado. */
+        ValMonedaSelect = 0;
 
+        /* los subpaneles poseen referencias a PanelComprador como parte de su implementacion: */
+        /* panelSelectMoneda cambia el entero ValMonedaSelect y esta propiedad es usada por panelBotones al comprar */
+        /* panelRetiros, si es que ya se ha completado una compra, puede retirar las monedas y almacenarlas en MonedasComprador, un Deposito<Moneda> que luego es usado por panelMonedasComprador */
         this.panelMonedasComprador = new PanelMonedasComprador(this);
         this.panelBotones = new PanelBotones(this);
         this.panelSelectMoneda = new PanelSelectMoneda(this);

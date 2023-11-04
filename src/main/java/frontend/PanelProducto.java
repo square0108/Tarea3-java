@@ -29,28 +29,7 @@ public class PanelProducto extends JPanel {
         imagesnickers = new ImageIcon("resources/snickers.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
         imagesuper8 = new ImageIcon("resources/super8.png").getImage().getScaledInstance(img_width, img_height,java.awt.Image.SCALE_SMOOTH);
     }
-    /*public Producto getProducto(){
-        if(this.producto == null){
-            return null;
-        } else{
-            Producto aux = this.producto;
-            this.producto = null;
-            return aux;
-        }
-    }
 
-    TODO: Creo que este metodo ya no se va a utilizar
-
-    @Deprecated
-    public void setProducto(Producto producto){
-        if(this.producto == null){
-            this.producto = producto;
-        }else{
-            System.out.println("Lanzar error sobre que esta lleno");
-        }
-        // cambiar despues¿?
-        repaint();
-    }*/
     private Image setImage(){
         if (this.producto instanceof CocaCola){
             return imagecoca;
